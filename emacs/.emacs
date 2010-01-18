@@ -1,57 +1,17 @@
+(setq path (concat "/Users/brian/bin:" "/opt/local/bin:"
+                   "opt/local/sbin:" "/usr/local/bin:"
+                   "/usr/local/sbin:" "/bin:/usr/bin:"
+                   "/usr/X11R6/bin:" "/usr/sbin:"
+                   "/sbin:" "/usr/local/mysql/bin:"))
+
+(setenv "PATH" path)
+
+(push "/opt/local/bin" exec-path)
+
 (defconst aquamacs
   (boundp 'aquamacs-version)
   "Are we running Aquamacs on OS X?")
 
-;; The first thing we want is to set our keybindings so if anything else
-;; fails, at least we have proper keys
-
-;; Key Bindings Section
-(global-unset-key (kbd "C-x m"))
-(global-unset-key (kbd "C-x f"))
-(global-unset-key (kbd "C-x d"))
-(global-unset-key (kbd "C-x C-b"))
-(global-unset-key (kbd "M-["))
-
-(global-set-key (kbd "<f5>") 'call-last-kbd-macro)
-(global-set-key (kbd "<f11>") 'aquamacs-toggle-full-frame)
-(global-set-key (kbd "C-h") 'backward-delete-char-untabify)
-(global-set-key (kbd "C-o") 'split-line)
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "C-r") 'isearch-backward-regexp)
-(global-set-key (kbd "C-w") 'backward-kill-word)
-(global-set-key (kbd "C-;") 'comment-or-uncomment-region-or-line)
-(global-set-key (kbd "C-\\") 'comment-or-uncomment-region-or-line)
-(global-set-key (kbd "C-=") 'ispell-word)
-;;(global-set-key (kbd "C-<return>") 'electric-buffer-list)
-(global-set-key (kbd "C-<tab>") 'other-window)
-(global-set-key (kbd "M-#") 'ispell-buffer)
-(global-set-key (kbd "M-s") 'isearch-forward)
-(global-set-key (kbd "M-r") 'isearch-backward)
-(global-set-key (kbd "M-{") 'previous-buffer)
-(global-set-key (kbd "M-}") 'next-buffer)
-(global-set-key (kbd "M-o") 'swap-window-buffers)
-(global-set-key (kbd "C-S-<tab>") #'(lambda nil (interactive)(other-window -1)))
-(global-set-key (kbd "C-M-o") 'switch-to-other-buffer)
-(global-set-key (kbd "C-M-=") 'enlarge-window)
-(global-set-key (kbd "C-M--") 'shrink-window)
-(global-set-key (kbd "C-M-w") 'backward-kill-sexp)
-(global-set-key (kbd "C-M-q") 'kill-other-buffer)
-(global-set-key (kbd "C-x e") 'delete-horizontal-space)
-(global-set-key (kbd "C-x g") 'goto-line)
-(global-set-key (kbd "C-x t") 'jao-toggle-selective-display)
-(global-set-key (kbd "C-x <tab>") 'indent-region)
-(global-set-key (kbd "C-x f =") 'diff-buffer-with-file)
-(global-set-key (kbd "C-x f d") 'dired)
-(global-set-key (kbd "C-x f r") 'revert-buffer)
-(global-set-key (kbd "C-x C-d") 'ido-find-file-in-tag-files)
-(global-set-key (kbd "C-x C-k") 'kill-region)
-(global-set-key (kbd "C-x C-m") 'execute-extended-command)
-(global-set-key (kbd "C-x C-o") 'occur)
-(global-set-key (kbd "C-x C-p") 'eval-print-last-sexp)
-(global-set-key (kbd "C-x C-<tab>") 'indent-rigidly)
-(global-set-key (kbd "C-c C-c") 'execute-extended-command)
-(global-set-key (kbd "C-c C-e") 'eval-last-sexp)
-(global-set-key (kbd "C-c C-p") 'eval-print-last-sexp)
 
 ;; Unique buffer names
 (require 'uniquify)
@@ -60,7 +20,18 @@
   uniquify-separator ":")
 
 ;; Load stuff
+(add-to-list 'load-path "~/.emacs.d/")
+
+(load-file "~/.emacs.d/load-directory.el")
+
+;; Load personal customizations 
+(mapcar 'load-directory '("~/.emacs.d/customizations"))
+
+
 (add-to-list 'load-path "~/.emacs.d/libraries/")
+(add-to-list 'load-path "~/.emacs.d/customizations/")
+
+
 (add-to-list 'load-path "~/.emacs.d/libraries/muse/lisp")
 (add-to-list 'load-path "~/.emacs.d/libraries/remember")
 (add-to-list 'load-path "~/.emacs.d/libraries/g-client")
@@ -85,7 +56,7 @@
 
 
 ;; Enable EDE (Project Management) features
-(global-ede-mode 1)
+;; (global-ede-mode 1)
 
 ;; Enable EDE for a pre-existing C++ project
 ;; (ede-cpp-root-project "NAME" :file "~/myproject/Makefile")
@@ -122,6 +93,7 @@
 (require 'tempo-snippets)
 (require 'php-mode)
 (require 'yasnippet)
+(require 'magit)
 
 (yas/initialize)
 (yas/load-directory "~/.emacs.d/libraries/yasnippet-0.6.1c/snippets")
@@ -177,12 +149,10 @@
 (setq js2-use-font-lock-faces t)
 
 ;; eshell setup
-(add-hook 'eshell-mode-hook
-          '(lambda nil
-             (eshell/export "PATH=`$HOME`/bin:/opt/local/bin:opt/local/sbin:/usr/local/bin:/usr/local/sbin:/bin:/usr/bin:/usr/X11R6/bin:/usr/sbin:/sbin:/usr/local/mysql/bin:`$PATH`")
-             (local-set-key "\C-u" 'eshell-kill-input)))
-          
-
+;; (add-hook 'eshell-mode-hook
+;;           '(lambda nil
+;;              (eshell/export "PATH=`$HOME`/bin:/opt/local/bin:opt/local/sbin:/usr/local/bin:/usr/local/sbin:/bin:/usr/bin:/usr/X11R6/bin:/usr/sbin:/sbin:/usr/local/mysql/bin:`$PATH`")
+;;              (local-set-key "\C-u" 'eshell-kill-input)))
 
 (defun my-c-mode-cust()
   (setq c-basic-offset 2))
