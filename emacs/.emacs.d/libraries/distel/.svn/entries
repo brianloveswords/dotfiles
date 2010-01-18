@@ -1,0 +1,151 @@
+8
+
+dir
+68
+http://distel.googlecode.com/svn/trunk
+http://distel.googlecode.com/svn
+
+
+
+2008-07-03T09:08:32.198393Z
+68
+mats.cronqvist
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+d5f8e727-742a-0410-b67d-dd739a6cc792
+
+Makefile.in
+file
+
+
+
+
+2008-07-26T03:05:45.000000Z
+aa1590f725518e7d5f511a1e54230da2
+2007-03-02T08:36:02.755384Z
+8
+lukego
+
+doc
+dir
+
+config
+dir
+
+AUTHORS
+file
+
+
+
+
+2008-07-26T03:05:45.000000Z
+e316d371902064ed67f628448b13b23c
+2008-06-26T09:09:14.710811Z
+67
+mats.cronqvist
+
+INSTALL
+file
+
+
+
+
+2008-07-26T03:05:45.000000Z
+0fbc6272296c59dfc78e805e818f6cf8
+2008-06-25T18:39:47.280106Z
+66
+mats.cronqvist
+
+src
+dir
+
+ChangeLog
+file
+
+
+
+
+2008-07-26T03:05:45.000000Z
+1aadb2bf503275f3d13122ed50d701fe
+2008-05-23T13:14:57.149375Z
+64
+mats.cronqvist
+
+INSTALL.WIN32
+file
+
+
+
+
+2008-07-26T03:05:45.000000Z
+d759cee758f4c3770036b0b71a7b42e6
+2008-06-25T18:39:47.280106Z
+66
+mats.cronqvist
+
+README.ie-session
+file
+
+
+
+
+2008-07-26T03:05:45.000000Z
+19ba36107db66f4a4198d0b58af82d54
+2007-02-27T13:35:36.889861Z
+2
+lukego
+
+elisp
+dir
+
+NEWS
+file
+
+
+
+
+2008-07-26T03:05:45.000000Z
+b93fd9462871e81531ca3549158fce44
+2007-02-27T13:35:36.889861Z
+2
+lukego
+
+ebin
+dir
+
+README
+file
+
+
+
+
+2008-07-26T03:05:45.000000Z
+2845539020780cb914bd11da62abbbbe
+2008-06-26T09:09:14.710811Z
+67
+mats.cronqvist
+
+Makefile
+file
+
+
+
+
+2008-07-26T03:05:45.000000Z
+150a884507234328058dbfcb6f4f76ed
+2007-05-12T11:14:20.607057Z
+13
+lukego
+

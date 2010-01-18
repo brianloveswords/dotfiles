@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: class
+# --
+
+/* Constructor */
+${1:ClassName} = function(${vars}) {
+   $constructor_body
+};
+
+/* Class definition */
+${1:ClassName}.prototype = {
+  ${classMethodOne}: function() { },
+  ${classMethodTwo}: function() { },
+  ${classMethodThree}: function() { }
+};
+$0
