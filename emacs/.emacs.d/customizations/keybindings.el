@@ -30,6 +30,7 @@
 (global-set-key (kbd "C-M-q") 'kill-other-buffer)
 (global-set-key (kbd "C-x e") 'delete-horizontal-space)
 (global-set-key (kbd "C-x g") 'goto-line)
+(global-set-key (kbd "C-x m") 'magit-status)
 (global-set-key (kbd "C-x t") 'jao-toggle-selective-display)
 (global-set-key (kbd "C-x <tab>") 'indent-region)
 (global-set-key (kbd "C-x f =") 'diff-buffer-with-file)
