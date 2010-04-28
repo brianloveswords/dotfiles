@@ -44,8 +44,10 @@ export GOROOT=$HOME/src/go
 export GOOS=darwin
 export GOARCH=amd64
 export GOBIN=$HOME/bin
-       
-export PATH=$HOME/bin:/opt/local/bin:opt/local/sbin:/usr/local/bin:/usr/local/sbin:/bin:/usr/bin:/usr/X11R6/bin:/usr/sbin:/sbin:/usr/local/mysql/bin:$PATH
+
+export SCALA_HOME=/usr/local/share/scala
+
+export PATH=$HOME/bin:/opt/local/bin:opt/local/sbin:/usr/local/bin:/usr/local/sbin:/bin:/usr/bin:/usr/X11R6/bin:/usr/sbin:/sbin:/usr/local/mysql/bin:$SCALA_HOME/bin:$PATH
 
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/
 export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=01;32:*.cmd=01;32:*.exe=01;32:*.com=01;32:*.btm=01;32:*.bat=01;32:*.sh=01;32:*.csh=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mng=01;35:*.xcf=01;35:*.pcx=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.avi=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.mov=01;35:*.qt=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.pdf=00;32:*.ps=00;32:*.txt=00;32:*.patch=00;32:*.diff=00;32:*.log=00;32:*.tex=00;32:*.doc=00;32:*.mp3=00;36:*.wav=00;36:*.mid=00;36:*.midi=00;36:*.au=00;36:*.ogg=00;36:*.flac=00;36:*.aac=00;36:'
@@ -122,8 +124,11 @@ alias ls="ls -GaphF"
 alias ll="ls -lGaphF"
 alias emacs="emacsclient"
 alias sshfs="/Applications/sshfs/bin/mount_sshfs"
-alias mount-gob="sshfs root@gob.flatworldknowledge.com:/var/www/bert ~/Development/fwk-gob"
-alias unmount-gob="umount ~/Development/fwk-gob"
+alias unix-timestamp="date +%s"
+alias activate-torrents="(cd ~/Downloads && mv *torrent torrents) 2> /dev/null"
+alias activate-nzb="(cd ~/Downloads && mv *.nzb nzb) 2> /dev/null"
+alias update-gob="ssh root@gob.flatworldknowledge.com \
+                  \"cd /var/www/bert/ && svn up && drush cache clear\""
 
 
 # Set the titlebar for the window, and also the window title in screen :)
