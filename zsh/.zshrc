@@ -124,10 +124,9 @@ alias s!="sudo !!"
 alias ls="ls -GaphF"
 alias ll="ls -lGaphF"
 alias emacs="emacs"
-alias scp-resume="rsync --partial --progress --rsh=ssh"
-alias unix-timestamp="date +%s"
-alias activate-torrents="(cd ~/Downloads && mv *torrent torrents) 2> /dev/null"
-alias activate-nzb="(cd ~/Downloads && mv *.nzb nzb) 2> /dev/null"
+alias dev="cd ~/dev"
+alias resumescp="rsync --partial --progress --rsh=ssh"
+alias unixtime="date +%s"
 
 # FWK ssh aliases
 alias gob.fwk="ssh bbrennan@gob.fwk"
