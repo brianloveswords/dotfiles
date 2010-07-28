@@ -140,14 +140,9 @@ alias web1.fwk="ssh bbrennan@web1.fwk"
 alias web2.fwk="ssh bbrennan@web2.fwk"
 alias web3.fwk="ssh bbrennan@web3.fwk"
 
-# Set the titlebar for the window, and also the window title in screen :)
-#
-# I don't want to be cocky, but this is all my own stuff and I'm frikking
-# proud of it.
-
 # This function sets the window tile to user@host:/workingdir before each
-# prompt. If you're using screen, it sets the window title (works
-# wonderfully for hardstatus lines :)
+# prompt. If you're using screen, it sets the window title (works wonderfully
+# for hardstatus lines :)
 precmd () {
   [[ -t 1 ]] || return
   case $TERM in
