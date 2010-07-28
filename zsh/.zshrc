@@ -37,7 +37,7 @@ export LINKS_XTERM=screen
 export CC=gcc
 export MANPAGER=less
 export PAGER=less
-export EDITOR=emacsclient
+export EDITOR=nano
 
 # Golang
 export GOROOT=$HOME/src/go
@@ -120,16 +120,26 @@ bindkey "\e[5~" history-search-backward
 bindkey "\e[6~" history-search-forward 
 
 # Aliases, how I love thee
+alias s!="sudo !!"
 alias ls="ls -GaphF"
 alias ll="ls -lGaphF"
-alias emacs="emacsclient"
-alias sshfs="/Applications/sshfs/bin/mount_sshfs"
+alias emacs="emacs"
+alias scp-resume="rsync --partial --progress --rsh=ssh"
 alias unix-timestamp="date +%s"
 alias activate-torrents="(cd ~/Downloads && mv *torrent torrents) 2> /dev/null"
 alias activate-nzb="(cd ~/Downloads && mv *.nzb nzb) 2> /dev/null"
-alias update-gob="ssh root@gob.flatworldknowledge.com \
-                  \"cd /var/www/bert/ && svn up && drush cache clear\""
 
+# FWK ssh aliases
+alias gob.fwk="ssh bbrennan@gob.fwk"
+alias bert.fwk="ssh bbrennan@bert.fwk"
+alias app1.fwk="ssh bbrennan@app1.fwk"
+
+alias db1.fwk="ssh bbrennan@db1.fwk"
+alias db2.fwk="ssh bbrennan@db2.fwk"
+
+alias web1.fwk="ssh bbrennan@web1.fwk"
+alias web2.fwk="ssh bbrennan@web2.fwk"
+alias web3.fwk="ssh bbrennan@web3.fwk"
 
 # Set the titlebar for the window, and also the window title in screen :)
 #
