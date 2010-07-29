@@ -29,12 +29,16 @@
 (add-to-list 'load-path "~/.emacs.d/libraries/")
 (add-to-list 'load-path "~/.emacs.d/libraries/scala-mode")
 (add-to-list 'load-path "~/.emacs.d/libraries/remember")
-(add-to-list 'load-path "~/.emacs.d/libraries/js2")
 (add-to-list 'load-path "~/.emacs.d/libraries/org-mode/lisp")
 (add-to-list 'load-path "~/.emacs.d/libraries/php-mode-1.5.0")
 (add-to-list 'load-path "~/.emacs.d/libraries/yaml-mode.el")
 (add-to-list 'load-path "~/.emacs.d/libraries/yasnippet-0.6.1c")
 (add-to-list 'load-path "~/.emacs.d/libraries/psvn.el")
+
+;; JavaScript mode setup
+(autoload 'js2-mode "js2" nil t)
+(setq js2-basic-offset 2)
+(setq js2-use-font-lock-faces t)
 
 ;; Never use tabs, two spaces per indent
 (setq c-basic-offset 2)
@@ -107,10 +111,6 @@
 ;;   (define-key org-todo-state-map "w"
 ;;     #'(lambda nil (interactive) (org-todo "WAITING"))))
 
-;; JavaScript mode setup
-(autoload 'js2-mode "js2" nil t)
-(setq js2-basic-offset 2)
-(setq js2-use-font-lock-faces t)
 
 ;; (add-hook 'org-mode-hook 'my-org-mode-cust)
 (add-hook 'text-mode-hook 'turn-off-flyspell)
