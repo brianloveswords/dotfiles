@@ -237,8 +237,6 @@ current line."
 
 (setq cssm-mirror-mode nil)
 
-
-
 (defun clean-php-mode ()
   (setq c-basic-offset 2) ; 2 tabs indenting
   (setq indent-tabs-mode nil) ; spaces, not tabs
