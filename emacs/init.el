@@ -253,6 +253,17 @@ current line."
 
 (add-hook 'php-mode-hook 'clean-php-mode)
 
+;; Highlight todos, fixmes and bugs
+(add-hook 'c-mode-common-hook
+               (lambda ()
+                (font-lock-add-keywords nil
+                  '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t)))))
+
+(add-hook 'js2-mode-hook 
+          (lambda()
+            (font-lock-add-keywords nil 
+              '(("\\<\\(FIXME\\|TODO\\|XXX+\\|BUG\\):" 1 font-lock-warning-face prepend)))))
+
 (setq confirm-kill-emacs nil)
 (setq display-buffer-reuse-frames nil)
 (setq vc-delete-logbuf-window nil)
