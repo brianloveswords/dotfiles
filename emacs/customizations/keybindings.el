@@ -62,6 +62,13 @@
 (define-key global-map (kbd "C-M-r") 'org-remember)
 (define-key mode-specific-map [?a] 'org-agenda)
 
+(define-key python-mode-map (kbd "C-h") 'py-electric-backspace)
+
+
+;; (eval-after-load 'js2
+;;   (define-key js2-mode-map (kbd "M-j") 'js2-enter-key))
+
+
 (define-key isearch-mode-map (kbd "C-h") 'isearch-delete-char)
 (define-key isearch-mode-map (kbd "C-o")
   (lambda ()
@@ -78,4 +85,4 @@
     (define-key dired-mode-map (kbd "M-}") 'next-buffer)
     (define-key dired-mode-map (kbd "C-x C-q") 'wdired-change-to-wdired-mode)))
 
-
+    
