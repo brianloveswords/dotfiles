@@ -61,6 +61,7 @@
 (require 'sass-mode)
 (require 'haml-mode)
 (require 'ibuffer)
+(require 'js2-highlight-vars)
 
 (yas/initialize)
 (yas/load-directory "~/.emacs.d/libraries/yasnippet-0.6.1c/snippets")
