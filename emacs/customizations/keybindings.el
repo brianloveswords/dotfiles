@@ -56,14 +56,13 @@
 (global-set-key (kbd "C-x C-r C-y") 'insert-register)
 (global-set-key (kbd "C-x C-r C-i") 'insert-register)
 
-
+         
 (define-key global-map (kbd "\C-c l") 'org-store-link)
 (define-key global-map (kbd "\C-c a") 'org-agenda)
 (define-key global-map (kbd "C-M-r") 'org-remember)
 (define-key mode-specific-map [?a] 'org-agenda)
 
-(define-key python-mode-map (kbd "C-h") 'py-electric-backspace)
-
+;; (define-key python-mode-map (kbd "C-h") 'py-electric-backspace)
 
 ;; (eval-after-load 'js2
 ;;   (define-key js2-mode-map (kbd "M-j") 'js2-enter-key))

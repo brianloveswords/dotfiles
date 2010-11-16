@@ -38,6 +38,8 @@
 ;; JavaScript mode setup
 (autoload 'espresso-mode "espresso")
 (autoload 'js2-mode "js2-mode" nil t)
+(autoload 'python-mode "python-mode")
+
 (setq js2-basic-offset 2)
 (setq js2-use-font-lock-faces t)
 
@@ -62,6 +64,7 @@
 (require 'haml-mode)
 (require 'ibuffer)
 (require 'js2-highlight-vars)
+(require 'python-mode)
 
 (yas/initialize)
 (yas/load-directory "~/.emacs.d/libraries/yasnippet-0.6.1c/snippets")
@@ -277,8 +280,10 @@ current line."
 
 (defun my-ido-mode-cust()
   (setq ido-enable-flex-matching t)
+  (setq ido-create-new-buffer 'always)
   (define-key ido-file-completion-map (kbd "C-h") 'ido-delete-backward-updir)
   (define-key ido-completion-map (kbd "C-w") 'backward-kill-word))
+
 
 (add-hook 'ido-setup-hook 'my-ido-mode-cust)
 
