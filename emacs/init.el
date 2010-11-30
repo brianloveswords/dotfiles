@@ -248,6 +248,7 @@
 (defalias 'qrr 'query-replace-regexp)
 (defalias 'wm 'whitespace-mode)
 (defalias 'wc 'whitespace-cleanup)
+(defalias 'cy 'clipboard-yank)
 
 ;; smart tab
 (defun smart-tab ()
