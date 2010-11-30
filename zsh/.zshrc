@@ -127,6 +127,7 @@ alias emacs="emacs"
 alias dev="cd ~/dev"
 alias resumescp="rsync --partial --progress --rsh=ssh"
 alias unixtime="date +%s"
+alias myip='ifconfig en1 inet'
 
 # FWK ssh aliases
 alias gob.fwk="ssh bbrennan@gob.fwk"
@@ -139,6 +140,9 @@ alias db2.fwk="ssh bbrennan@db2.fwk"
 alias web1.fwk="ssh bbrennan@web1.fwk"
 alias web2.fwk="ssh bbrennan@web2.fwk"
 alias web3.fwk="ssh bbrennan@web3.fwk"
+
+# other servers
+alias nyhacker='ssh brian@gotham.nyhacker.org'
 
 # This function sets the window tile to user@host:/workingdir before each
 # prompt. If you're using screen, it sets the window title (works wonderfully
