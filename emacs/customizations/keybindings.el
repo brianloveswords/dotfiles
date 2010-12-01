@@ -44,6 +44,7 @@
 (global-set-key (kbd "C-x w c") 'whitespace-cleanup)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x C-d") 'ido-find-file-in-tag-files)
+(global-set-key (kbd "C-x C-g") 'goto-line)
 (global-set-key (kbd "C-x C-k") 'kill-region)
 (global-set-key (kbd "C-x C-m") 'execute-extended-command)
 (global-set-key (kbd "C-x C-o") 'occur)
