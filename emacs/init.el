@@ -39,7 +39,11 @@
 (autoload 'espresso-mode "espresso")
 (autoload 'js2-mode "js2-mode" nil t)
 (autoload 'python-mode "python-mode")
-
+(autoload 'markdown-mode "markdown-mode.el"
+   "Major mode for editing Markdown files" t)
+(setq auto-mode-alist
+   (cons '("\\.md" . markdown-mode) auto-mode-alist))
+                                                       
 (setq js2-basic-offset 2)
 (setq js2-use-font-lock-faces t)
 
@@ -83,6 +87,7 @@
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.erb$" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache$" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.rjs$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.builder$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php$" . nxml-mode))
@@ -249,6 +254,8 @@
 (defalias 'wm 'whitespace-mode)
 (defalias 'wc 'whitespace-cleanup)
 (defalias 'cy 'clipboard-yank)
+(defalias 'ci 'org-clock-in)
+(defalias 'co 'org-clock-out)
 
 ;; smart tab
 (defun smart-tab ()
