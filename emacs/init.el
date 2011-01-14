@@ -38,6 +38,7 @@
 ;; JavaScript mode setup
 (autoload 'espresso-mode "espresso")
 (autoload 'js2-mode "js2-mode" nil t)
+
 (autoload 'python-mode "python-mode")
 (autoload 'markdown-mode "markdown-mode.el"
    "Major mode for editing Markdown files" t)
@@ -69,6 +70,7 @@
 (require 'ibuffer)
 (require 'js2-highlight-vars)
 (require 'python-mode)
+(require 'gist)
 
 (yas/initialize)
 (yas/load-directory "~/.emacs.d/libraries/yasnippet-0.6.1c/snippets")
