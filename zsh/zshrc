@@ -21,3 +21,22 @@ plugins=(git osx ruby)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+export EDITOR=emacs
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
+
+# Aliases, aliases
+alias ll='ls -lah'
+alias unixtime="date +%s"
+
+# Functions
+
+# find out ipaddress -- only works for os x
+function ipaddr(){
+    ifconfig en1 inet|grep inet|awk '{print $2}'
+}
+
+# Load RVM
+if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
+    . "$HOME/.rvm/scripts/rvm"
+    export RPROMPT="[%{$fg[magenta]%}\$(~/.rvm/bin/rvm-prompt)%{$reset_color%}]"
+fi
