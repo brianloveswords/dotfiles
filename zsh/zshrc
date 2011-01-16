@@ -24,7 +24,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export EDITOR=emacs
-export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/Cellar/python/2.7.1/bin:/usr/bin:/usr/sbin:/bin:/sbin
 
 # Directories
 export dev=~/dev
