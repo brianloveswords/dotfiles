@@ -391,5 +391,8 @@ current line."
 (setq truncate-lines 1)
 
 ;; themes!
-(load-file "~/.emacs.d/themes/color-theme-almost-monokai.el")
-(color-theme-almost-monokai)
+;; this is a a terrible way to do this, with a lambda.
+(if (featurep 'color-theme)
+    (lambda ()
+      (load-file "~/.emacs.d/themes/color-theme-almost-monokai.el")
+      (color-theme-almost-monokai)))
