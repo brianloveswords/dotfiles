@@ -27,7 +27,6 @@
     (mapc #'load (directory-files customizations-dir nil ".*el$")))
 
 (add-to-list 'load-path "~/.emacs.d/libraries/")
-(add-to-list 'load-path "~/.emacs.d/libraries/scala-mode")
 (add-to-list 'load-path "~/.emacs.d/libraries/remember")
 (add-to-list 'load-path "~/.emacs.d/libraries/org-mode/lisp")
 (add-to-list 'load-path "~/.emacs.d/libraries/php-mode-1.5.0")
@@ -62,7 +61,6 @@
 (require 'org-install)
 (require 'remember)
 (require 'yaml-mode)
-(require 'scala-mode-auto)
 (require 'sass-mode)
 (require 'haml-mode)
 (require 'ibuffer)
