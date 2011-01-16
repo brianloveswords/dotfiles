@@ -385,3 +385,7 @@ current line."
 
 ;; default to truncate lines
 (setq truncate-lines 1)
+
+;; themes!
+(load-file "~/.emacs.d/themes/color-theme-almost-monokai.el")
+(color-theme-almost-monokai)
