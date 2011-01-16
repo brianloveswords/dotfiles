@@ -33,6 +33,9 @@ export dev=~/dev
 alias ll='ls -lah'
 alias unixtime="date +%s"
 
+unsetopt correct \
+    correct_all
+
 # Functions
 
 # find out ipaddress -- only works for os x
