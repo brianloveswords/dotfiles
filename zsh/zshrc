@@ -42,7 +42,7 @@ unsetopt correct \
 function ipaddr(){
     ifconfig en1 inet|grep inet|awk '{print $2}'
 }
-# list all open ports
+# list all open ports -- works for os x
 function openports(){
     sudo lsof -i -P | grep -i "listen"
 }
