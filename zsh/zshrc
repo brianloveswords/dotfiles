@@ -42,7 +42,10 @@ unsetopt correct \
 function ipaddr(){
     ifconfig en1 inet|grep inet|awk '{print $2}'
 }
-
+# list all open ports
+function openports(){
+    sudo lsof -i -P | grep -i "listen"
+}
 # unpack or pack or tar.bz2 files.
 function tbz() {
     if [ $2 ]; then; tar -cjvf $@
