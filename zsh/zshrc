@@ -43,5 +43,4 @@ function ipaddr(){
 # Load RVM
 if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
     . "$HOME/.rvm/scripts/rvm"
-    export RPROMPT="[%{$fg[magenta]%}\$(~/.rvm/bin/rvm-prompt)%{$reset_color%}]"
 fi
