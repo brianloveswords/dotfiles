@@ -376,7 +376,6 @@ current line."
 (put 'set-goal-column 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
 
-(server-start)
 (windmove-default-keybindings 'meta)
 
 ;; ediff custo.
