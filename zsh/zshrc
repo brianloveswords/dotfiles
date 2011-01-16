@@ -43,6 +43,19 @@ function ipaddr(){
     ifconfig en1 inet|grep inet|awk '{print $2}'
 }
 
+# unpack or pack or tar.bz2 files.
+function tbz() {
+    if [ $2 ]; then; tar -czjf $@
+               else; tar -xzjf $1
+    fi
+}
+# unpack or pack or tar.gz files.
+function tgz() {
+    if [ $2 ]; then; tar -czvf $@
+               else; tar -xzvf $1
+    fi
+}
+
 # Load RVM
 # if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
 #     . "$HOME/.rvm/scripts/rvm"
