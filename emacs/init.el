@@ -33,7 +33,6 @@
 (add-to-list 'load-path "~/.emacs.d/libraries/php-mode-1.5.0")
 (add-to-list 'load-path "~/.emacs.d/libraries/yaml-mode.el")
 (add-to-list 'load-path "~/.emacs.d/libraries/yasnippet-0.6.1c")
-(add-to-list 'load-path "~/.emacs.d/libraries/psvn.el")
 
 ;; JavaScript mode setup
 (autoload 'espresso-mode "espresso")
@@ -60,7 +59,6 @@
 (require 'yasnippet)
 (require 'magit)
 (require 'uniquify)
-(require 'psvn)
 (require 'org-install)
 (require 'remember)
 (require 'yaml-mode)
