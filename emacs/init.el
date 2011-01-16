@@ -83,6 +83,7 @@
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php$" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.html$" . nxml-mode))
 
+(add-to-list 'auto-mode-alist '("\\.ru$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rjs$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.builder$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.gemspec$" . ruby-mode))
@@ -95,6 +96,7 @@
 (add-to-list 'auto-mode-alist '("\\.install$" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 
+(add-to-list 'auto-mode-alist '("\\.rhtml$" . html-helper-mode))
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.js$" . c-mode))
 (add-to-list 'auto-mode-alist '("\\.m$" . objc-mode))
