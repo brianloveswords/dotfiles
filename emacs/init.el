@@ -97,7 +97,7 @@
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.json$" . yaml-mode)) ;;weird, I know. it seems to work better
 
 (add-to-list 'auto-mode-alist '("\\.rhtml$" . html-helper-mode))
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
