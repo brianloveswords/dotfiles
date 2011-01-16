@@ -390,6 +390,5 @@ current line."
 (setq truncate-lines 1)
 
 ;; themes!
-;; this is a a terrible way to do this, with a lambda.
 (load-file "~/.emacs.d/themes/color-theme-almost-monokai.el")
-(color-theme-almost-monokai))
+(color-theme-almost-monokai)
