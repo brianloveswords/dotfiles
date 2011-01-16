@@ -32,7 +32,7 @@
   (interactive)
   (color-theme-install
    '(color-theme-almost-monokai
-     ((background-color . "#141414")
+     ((background-color . "#030303")
       (foreground-color . "#F8F8F2")
       (cursor-color . "#DAD085"))
      (default ((t (nil))))
