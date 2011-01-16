@@ -45,8 +45,8 @@ function ipaddr(){
 
 # unpack or pack or tar.bz2 files.
 function tbz() {
-    if [ $2 ]; then; tar -czjf $@
-               else; tar -xzjf $1
+    if [ $2 ]; then; tar -cjvf $@
+               else; tar -xjvf $1
     fi
 }
 # unpack or pack or tar.gz files.
