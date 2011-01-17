@@ -20,7 +20,18 @@ export ZSH_THEME="prose"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git osx ruby)
 
-source $ZSH/oh-my-zsh.sh
+if [[ $TERM == "dumb" ]]; then	# in emacs
+    PS1='%(?..[%?])%!:%~%# '
+    # for tramp to not hang, need the following. cf:
+    # http://www.emacswiki.org/emacs/TrampMode
+    unsetopt zle
+    unsetopt prompt_cr
+    unsetopt prompt_subst
+    unfunction precmd
+    unfunction preexec
+else
+    source $ZSH/oh-my-zsh.sh
+fi
 
 # Customize to your needs...
 export EDITOR=emacs
