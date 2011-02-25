@@ -26,6 +26,7 @@
 (if (file-exists-p customizations-dir)
     (mapc #'load (directory-files customizations-dir nil ".*el$")))
 
+
 (add-to-list 'load-path "~/.emacs.d/libraries/")
 (add-to-list 'load-path "~/.emacs.d/libraries/remember")
 (add-to-list 'load-path "~/.emacs.d/libraries/org-mode/lisp")
@@ -42,7 +43,7 @@
    "Major mode for editing Markdown files" t)
 (setq auto-mode-alist
    (cons '("\\.md" . markdown-mode) auto-mode-alist))
-                                                       
+
 (setq js2-basic-offset 2)
 (setq js2-use-font-lock-faces t)
 
@@ -51,6 +52,13 @@
 (setq css-indent-offset 2)
 (setq-default indent-tabs-mode nil)
 (setq indent-tabs-mode nil)
+
+;; if something does use tabs, use 2 spaces
+(setq default-tab-width 2)
+(defun toggle-tabs nil
+  "Toggle tabs v spaces"
+  (interactive)
+  (setq indent-tabs-mode (if indent-tabs-mode nil 1)))
 
 (require 'htmlize)
 (require 're-builder+)
@@ -114,7 +122,7 @@
 
 ;; Org setup
 ;; (setq org-remember-templates
-;;       '(("Todo" ?t "* TODO [#B] %?\n  %u" "~/Documents/Notes/todo.org" "Tasks")
+;;       '(("Todo" ?t "* TODO [#B] %?\n    %u" "~/Documents/Notes/todo.org" "Tasks")
 ;;         ("Notes" ?n "* %u %?" "~/Documents/Notes/notes.org" "Notes")))
 ;; (add-hook 'remember-mode-hook 'org-remember-apply-template)
 
@@ -242,7 +250,7 @@
   (c-toggle-hungry-state 1)
   (set (make-local-variable 'indent-line-function) 'my-js2-indent-function)
   (define-key js2-mode-map [(meta control |)] 'cperl-lineup)
-  (define-key js2-mode-map [(meta control \;)] 
+  (define-key js2-mode-map [(meta control \;)]
     '(lambda()
        (interactive)
        (insert "/* -----[ ")
@@ -310,7 +318,7 @@ current line."
             (define-key python-mode-map (kbd "C-h") 'python-backspace)))
 
 ;; Clean up of all those wacky backup files
-(setq backup-by-copying t                 ;; don't clobber symlinks
+(setq backup-by-copying t                   ;; don't clobber symlinks
       backup-directory-alist
       '(("." . "~/.emacs.d/autosaves/")) ;; don't litter
       delete-old-versions t
@@ -365,9 +373,9 @@ current line."
                 (font-lock-add-keywords nil
                   '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t)))))
 
-(add-hook 'js2-mode-hook 
+(add-hook 'js2-mode-hook
           (lambda()
-            (font-lock-add-keywords nil 
+            (font-lock-add-keywords nil
               '(("\\<\\(FIXME\\|TODO\\|XXX+\\|BUG\\):" 1 font-lock-warning-face prepend)))))
 
 (setq confirm-kill-emacs nil)
