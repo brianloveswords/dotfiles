@@ -68,6 +68,9 @@
 (require 'python-mode)
 (require 'gist)
 
+;; to use curl
+(setq gist-use-curl t)
+
 (yas/initialize)
 (yas/load-directory "~/.emacs.d/libraries/yasnippet-0.6.1c/snippets")
 
@@ -97,7 +100,6 @@
 
 (add-to-list 'auto-mode-alist '("\\.rhtml$" . html-helper-mode))
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-(add-to-list 'auto-mode-alist '("\\.js$" . c-mode))
 (add-to-list 'auto-mode-alist '("\\.m$" . objc-mode))
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
@@ -388,6 +390,16 @@ current line."
 
 ;; default to truncate lines
 (setq truncate-lines 1)
+
+
+(defun compile-less-css ()
+  "Compile LESS to CSS"
+  (interactive)
+  (if (string-match "\.less$" (buffer-file-name))
+      (async-shell-command (concat "lessc " (buffer-file-name) "> main.css") nil nil)))
+
+;; (add-hook 'after-save-hook 'compile-less-css)
+
 
 ;; themes!
 (load-file "~/.emacs.d/themes/color-theme-almost-monokai.el")
