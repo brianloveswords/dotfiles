@@ -34,8 +34,9 @@ else
 fi
 
 # Customize to your needs...
+export VISUAL=aquamacs
 export EDITOR=emacs
-export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/Cellar/python/2.7.1/bin:/usr/bin:/usr/sbin:/bin:/sbin
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/Cellar/python/2.7.1/bin:/usr/local/var/mysql/bin/:/usr/bin:/usr/sbin:/bin:/sbin
 
 # Directories
 export dev=~/dev
@@ -43,7 +44,8 @@ export dev=~/dev
 # Aliases, aliases
 alias ll='ls -lah'
 alias unixtime="date +%s"
-
+alias cx='chmod +x'
+     
 unsetopt correct \
     correct_all
 
@@ -70,7 +72,6 @@ function tgz() {
     fi
 }
 
-# Load RVM
-# if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
-#     . "$HOME/.rvm/scripts/rvm"
-# fi
+export NODE_PATH=/usr/local/lib/node
+export WORKON_HOME=~/.python-envs
+source /usr/local/Cellar/python/2.7.1/bin/virtualenvwrapper.sh

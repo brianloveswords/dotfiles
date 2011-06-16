@@ -13,19 +13,14 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 
-;; Load path
+;; Load path & customizations 
 (setq dotfiles-dir (file-name-directory
                     (or (buffer-file-name) load-file-name)))
-
-;; Load personal customizations
 (setq customizations-dir (concat dotfiles-dir "customizations"))
-
 (add-to-list 'load-path dotfiles-dir)
 (add-to-list 'load-path customizations-dir)
-
 (if (file-exists-p customizations-dir)
     (mapc #'load (directory-files customizations-dir nil ".*el$")))
-
 
 (add-to-list 'load-path "~/.emacs.d/libraries/")
 (add-to-list 'load-path "~/.emacs.d/libraries/remember")
@@ -33,27 +28,24 @@
 (add-to-list 'load-path "~/.emacs.d/libraries/php-mode-1.5.0")
 (add-to-list 'load-path "~/.emacs.d/libraries/yaml-mode.el")
 (add-to-list 'load-path "~/.emacs.d/libraries/yasnippet-0.6.1c")
+(add-to-list 'load-path "~/.emacs.d/libraries/html5-el")
 
 ;; JavaScript mode setup
 (autoload 'espresso-mode "espresso")
 (autoload 'js2-mode "js2-mode" nil t)
-
 (autoload 'python-mode "python-mode")
-(autoload 'markdown-mode "markdown-mode.el"
-   "Major mode for editing Markdown files" t)
-(setq auto-mode-alist
-   (cons '("\\.md" . markdown-mode) auto-mode-alist))
+(autoload 'markdown-mode "markdown-mode.el" nil t)
 
-(setq js2-basic-offset 2)
 (setq js2-use-font-lock-faces t)
 
-;; Never use tabs, two spaces per indent
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; INDENTATION RELATED BIDNESS ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq js2-basic-offset 2)
 (setq c-basic-offset 2)
 (setq css-indent-offset 2)
 (setq-default indent-tabs-mode nil)
 (setq indent-tabs-mode nil)
-
-;; if something does use tabs, use 2 spaces
 (setq default-tab-width 2)
 (defun toggle-tabs nil
   "Toggle tabs v spaces"
@@ -75,6 +67,9 @@
 (require 'js2-highlight-vars)
 (require 'python-mode)
 (require 'gist)
+(require 'django-html-mode)
+(require 'django-mode)
+(require 'whattf-dt)
 
 ;; to use curl
 (setq gist-use-curl t)
@@ -89,6 +84,8 @@
 (add-to-list 'auto-mode-alist '("\\.mustache$" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php$" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.html$" . nxml-mode))
+(fset 'html-mode 'nxml-mode)
+(fset 'html-helper-mode 'nxml-mode)
 
 (add-to-list 'auto-mode-alist '("\\.ru$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rjs$" . ruby-mode))
@@ -110,6 +107,9 @@
 (add-to-list 'auto-mode-alist '("\\.m$" . objc-mode))
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
+(add-to-list 'auto-mode-alist '("wscript$" . python-mode))
+(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml$" . django-html-mode))
 
 (add-to-list 'file-coding-system-alist '("\\.txt\\'" mule-utf-8 . mule-utf-8))
 (add-to-list 'file-coding-system-alist '("\\.org\\'" mule-utf-8 . mule-utf-8))
@@ -118,27 +118,6 @@
 (setq
   uniquify-buffer-name-style 'post-forward
   uniquify-separator ":")
-
-;; Org setup
-;; (setq org-remember-templates
-;;       '(("Todo" ?t "* TODO [#B] %?\n    %u" "~/Documents/Notes/todo.org" "Tasks")
-;;         ("Notes" ?n "* %u %?" "~/Documents/Notes/notes.org" "Notes")))
-;; (add-hook 'remember-mode-hook 'org-remember-apply-template)
-
-;; (defun my-org-mode-cust()
-;;   (turn-off-flyspell)
-;;   (define-prefix-command 'org-todo-state-map)
-;;   (define-key org-mode-map (kbd "C-c x") 'org-todo-state-map)
-;;   (define-key org-mode-map (kbd "M-j") 'org-meta-return)
-;;   (define-key org-mode-map (kbd "C-<tab>") 'other-window)
-;;   (define-key org-todo-state-map "x"
-;;     #'(lambda nil (interactive) (org-todo "CANCELLED")))
-;;   (define-key org-todo-state-map "d"
-;;     #'(lambda nil (interactive) (org-todo "DONE")))
-;;   (define-key org-todo-state-map "s"
-;;     #'(lambda nil (interactive) (org-todo "STARTED")))
-;;   (define-key org-todo-state-map "w"
-;;     #'(lambda nil (interactive) (org-todo "WAITING"))))
 
 
 ;; (add-hook 'org-mode-hook 'my-org-mode-cust)
@@ -312,9 +291,9 @@ current line."
 (add-hook 'ido-setup-hook 'my-ido-mode-cust)
 
 ;; Python mode customization
-(add-hook 'python-mode-hook
-          (lambda nil
-            (define-key python-mode-map (kbd "C-h") 'python-backspace)))
+;; (add-hook 'python-mode-hook
+;;          (lambda nil
+;;            (define-key python-mode-map (kbd "C-h") 'python-backspace)))
 
 ;; Clean up of all those wacky backup files
 (setq backup-by-copying t                   ;; don't clobber symlinks
@@ -332,10 +311,10 @@ current line."
 (unless (featurep 'xemacs)
   (provide 'emacs))
 
-(when (and (featurep 'emacs) (load "~/nxml-mode/rng-auto.el" t))
-  (defalias 'html-mode 'nxml-mode)
-  (defalias 'xml-mode 'nxml-mode)
-  (defalias 'html-helper-mode 'nxml-mode))
+;; (when (and (featurep 'emacs) (load "~/nxml-mode/rng-auto.el" t))
+;;   (defalias 'html-mode 'nxml-mode)
+;;   (defalias 'xml-mode 'nxml-mode)
+;;   (defalias 'html-helper-mode 'nxml-mode))
 
 ;; (setq magic-mode-alist ())
 
@@ -368,6 +347,10 @@ current line."
 
 ;; Highlight todos, fixmes and bugs
 (add-hook 'c-mode-common-hook
+               (lambda ()
+                (font-lock-add-keywords nil
+                  '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t)))))
+(add-hook 'php-mode-hook
                (lambda ()
                 (font-lock-add-keywords nil
                   '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t)))))

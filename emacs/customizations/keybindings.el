@@ -26,6 +26,7 @@
 (global-set-key (kbd "M-{") 'previous-buffer)
 (global-set-key (kbd "M-}") 'next-buffer)
 (global-set-key (kbd "M-o") 'occur)
+(global-set-key (kbd "M-z") 'undo)
 (global-set-key (kbd "C-S-<tab>") #'(lambda nil (interactive)(other-window -1)))
 (global-set-key (kbd "C-M-s") 'rgrep)
 (global-set-key (kbd "C-M-o") 'switch-to-other-buffer)
