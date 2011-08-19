@@ -89,6 +89,8 @@
 (add-to-list 'auto-mode-alist '("\\.mustache$" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php$" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.html$" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.ejs$" . nxml-mode))
+
 (fset 'html-mode 'nxml-mode)
 (fset 'html-helper-mode 'nxml-mode)
 
@@ -121,7 +123,7 @@
 (add-to-list 'auto-mode-alist '("\\.djhtml$" . django-html-mode))
 
 (add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
-(add-to-list 'auto-mode-alist '("\\.jade$" . sws-mode))
+(add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
 
 (add-to-list 'file-coding-system-alist '("\\.txt\\'" mule-utf-8 . mule-utf-8))
 (add-to-list 'file-coding-system-alist '("\\.org\\'" mule-utf-8 . mule-utf-8))
