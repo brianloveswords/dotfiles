@@ -73,5 +73,5 @@ function tgz() {
 }
 
 export NODE_PATH=/usr/local/lib/node
-export WORKON_HOME=~/.python-envs
-source /usr/local/Cellar/python/2.7.1/bin/virtualenvwrapper.sh
+#export WORKON_HOME=~/.python-envs
+#source /usr/local/Cellar/python/2.7.1/bin/virtualenvwrapper.sh

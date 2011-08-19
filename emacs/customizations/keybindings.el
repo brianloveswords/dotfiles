@@ -10,6 +10,7 @@
 
 (global-set-key (kbd "<f5>") 'call-last-kbd-macro)
 (global-set-key (kbd "<f11>") 'aquamacs-toggle-full-frame)
+(global-set-key (kbd "<f12>") 'flymake-display-err-menu-for-current-line)
 (global-set-key (kbd "<f15>") 'rgrep)
 (global-set-key (kbd "C-h") 'backward-delete-char-untabify)
 (global-set-key (kbd "C-o") 'split-line)

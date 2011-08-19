@@ -13,7 +13,7 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 
-;; Load path & customizations 
+;; Load path & customizations
 (setq dotfiles-dir (file-name-directory
                     (or (buffer-file-name) load-file-name)))
 (setq customizations-dir (concat dotfiles-dir "customizations"))
@@ -22,13 +22,14 @@
 (if (file-exists-p customizations-dir)
     (mapc #'load (directory-files customizations-dir nil ".*el$")))
 
-(add-to-list 'load-path "~/.emacs.d/libraries/")
-(add-to-list 'load-path "~/.emacs.d/libraries/remember")
-(add-to-list 'load-path "~/.emacs.d/libraries/org-mode/lisp")
-(add-to-list 'load-path "~/.emacs.d/libraries/php-mode-1.5.0")
-(add-to-list 'load-path "~/.emacs.d/libraries/yaml-mode.el")
-(add-to-list 'load-path "~/.emacs.d/libraries/yasnippet-0.6.1c")
-(add-to-list 'load-path "~/.emacs.d/libraries/html5-el")
+(add-to-list 'load-path "~/.emacs.d/vendor/")
+(add-to-list 'load-path "~/.emacs.d/vendor/remember")
+(add-to-list 'load-path "~/.emacs.d/vendor/org-mode/lisp")
+(add-to-list 'load-path "~/.emacs.d/vendor/php-mode-1.5.0")
+(add-to-list 'load-path "~/.emacs.d/vendor/yaml-mode.el")
+(add-to-list 'load-path "~/.emacs.d/vendor/yasnippet-0.6.1c")
+(add-to-list 'load-path "~/.emacs.d/vendor/html5-el")
+(add-to-list 'load-path "~/.emacs.d/vendor/jade-mode")
 
 ;; JavaScript mode setup
 (autoload 'espresso-mode "espresso")
@@ -70,12 +71,16 @@
 (require 'django-html-mode)
 (require 'django-mode)
 (require 'whattf-dt)
+(require 'puppet-mode)
+(require 'sws-mode)
+(require 'jade-mode)
+(require 'mustache-mode)
 
 ;; to use curl
 (setq gist-use-curl t)
 
 (yas/initialize)
-(yas/load-directory "~/.emacs.d/libraries/yasnippet-0.6.1c/snippets")
+(yas/load-directory "~/.emacs.d/vendor/yasnippet-0.6.1c/snippets")
 
 (setq yas/root-directory "~/.emacs.d/my-snippets")
 (yas/load-directory yas/root-directory)
@@ -100,16 +105,23 @@
 (add-to-list 'auto-mode-alist '("\\.install$" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 
+(add-to-list 'auto-mode-alist '("fabfile$" . python-mode))
+(add-to-list 'auto-mode-alist '("wscript$" . python-mode))
+
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.json$" . yaml-mode)) ;;weird, I know. it seems to work better
 
+(add-to-list 'auto-mode-alist '("\\.??sh$" . sh-mode))
+(add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.m$" . objc-mode))
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
-(add-to-list 'auto-mode-alist '("wscript$" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml$" . django-html-mode))
+
+(add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
+(add-to-list 'auto-mode-alist '("\\.jade$" . sws-mode))
 
 (add-to-list 'file-coding-system-alist '("\\.txt\\'" mule-utf-8 . mule-utf-8))
 (add-to-list 'file-coding-system-alist '("\\.org\\'" mule-utf-8 . mule-utf-8))
@@ -388,8 +400,18 @@ current line."
   (if (string-match "\.less$" (buffer-file-name))
       (async-shell-command (concat "lessc " (buffer-file-name) "> main.css") nil nil)))
 
-;; (add-hook 'after-save-hook 'compile-less-css)
+(when (load "flymake" t)
+  (defun flymake-pyflakes-init ()
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+      (list "pychecker.sh" (list local-file))))
+  (add-to-list 'flymake-allowed-file-name-masks
+               '("\\.py\\'" flymake-pyflakes-init)))
 
+(add-hook 'find-file-hook 'flymake-find-file-hook)
 
 ;; themes!
 (load-file "~/.emacs.d/themes/color-theme-almost-monokai.el")
