@@ -7,6 +7,7 @@
 (global-unset-key (kbd "C-x C-r"))
 (global-unset-key (kbd "M-["))
 (global-unset-key (kbd "M-`"))
+(global-unset-key (kbd "C-x C-m"))
 
 (global-set-key (kbd "<f5>") 'call-last-kbd-macro)
 (global-set-key (kbd "<f11>") 'aquamacs-toggle-full-frame)
@@ -29,6 +30,7 @@
 (global-set-key (kbd "M-o") 'occur)
 (global-set-key (kbd "M-z") 'undo)
 (global-set-key (kbd "M-*") #'(lambda nil (interactive)(insert-char 9733 1))) ;; black star
+(global-set-key (kbd "M-M") 'magit-status)
 (global-set-key (kbd "C-S-<tab>") #'(lambda nil (interactive)(other-window -1)))
 (global-set-key (kbd "C-M-s") 'rgrep)
 (global-set-key (kbd "C-M-o") 'switch-to-other-buffer)
@@ -38,7 +40,6 @@
 (global-set-key (kbd "C-c i") 'org-clock-in)
 (global-set-key (kbd "C-c o") 'org-clock-out)
 (global-set-key (kbd "C-x e") 'delete-horizontal-space)
-(global-set-key (kbd "C-x m") 'magit-status)
 (global-set-key (kbd "C-x t") 'jao-toggle-selective-display)
 (global-set-key (kbd "C-x <tab>") 'indent-region)
 (global-set-key (kbd "C-x f =") 'diff-buffer-with-file)
