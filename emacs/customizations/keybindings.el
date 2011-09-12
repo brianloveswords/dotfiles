@@ -60,7 +60,6 @@
 (global-set-key (kbd "C-x C-r C-s") 'copy-to-register)
 (global-set-key (kbd "C-x C-r C-y") 'insert-register)
 (global-set-key (kbd "C-x C-r C-i") 'insert-register)
-
          
 (define-key global-map (kbd "\C-c l") 'org-store-link)
 (define-key global-map (kbd "\C-c a") 'org-agenda)
@@ -89,4 +88,4 @@
     (define-key dired-mode-map (kbd "M-}") 'next-buffer)
     (define-key dired-mode-map (kbd "C-x C-q") 'wdired-change-to-wdired-mode)))
 
-    
+

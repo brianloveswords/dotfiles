@@ -75,8 +75,9 @@
 (require 'sws-mode)
 (require 'jade-mode)
 (require 'mustache-mode)
+(require 'deft)
 
-;; to use curl
+;; to use curl with gist mode
 (setq gist-use-curl t)
 
 (yas/initialize)
