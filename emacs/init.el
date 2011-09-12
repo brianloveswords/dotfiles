@@ -82,7 +82,6 @@
 
 (yas/initialize)
 (yas/load-directory "~/.emacs.d/vendor/yasnippet-0.6.1c/snippets")
-
 (setq yas/root-directory "~/.emacs.d/my-snippets")
 (yas/load-directory yas/root-directory)
 
@@ -257,6 +256,7 @@
 
 (add-hook 'js2-mode-hook 'my-js2-mode-hook)
 
+
 (defalias 'qrr 'query-replace-regexp)
 (defalias 'wm 'whitespace-mode)
 (defalias 'wc 'whitespace-cleanup)
@@ -265,7 +265,6 @@
 (defalias 'co 'org-clock-out)
 (defalias 'd 'deft)
 
-;; smart tab
 (defun smart-tab ()
   "This smart tab is minibuffer compliant: it acts as usual in
 the minibuffer. Else, if mark is active, indents region. Else if
@@ -281,7 +280,6 @@ current line."
       (if (looking-at "\\_>")
           (dabbrev-expand nil)
         (indent-for-tab-command)))))
-
 
 ;; Ido mode
 (defun ido-find-file-in-tag-files ()

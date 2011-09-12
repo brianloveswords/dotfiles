@@ -28,6 +28,7 @@
 (global-set-key (kbd "M-}") 'next-buffer)
 (global-set-key (kbd "M-o") 'occur)
 (global-set-key (kbd "M-z") 'undo)
+(global-set-key (kbd "M-*") #'(lambda nil (interactive)(insert-char 9733 1))) ;; black star
 (global-set-key (kbd "C-S-<tab>") #'(lambda nil (interactive)(other-window -1)))
 (global-set-key (kbd "C-M-s") 'rgrep)
 (global-set-key (kbd "C-M-o") 'switch-to-other-buffer)
@@ -47,7 +48,6 @@
 (global-set-key (kbd "C-x w c") 'whitespace-cleanup)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x C-d") 'dired)
-(global-set-key (kbd "C-x C-g") 'goto-line)
 (global-set-key (kbd "C-x C-k") 'kill-region)
 (global-set-key (kbd "C-x C-l") 'goto-line)
 (global-set-key (kbd "C-x C-m") 'execute-extended-command)
@@ -60,7 +60,7 @@
 (global-set-key (kbd "C-x C-r C-s") 'copy-to-register)
 (global-set-key (kbd "C-x C-r C-y") 'insert-register)
 (global-set-key (kbd "C-x C-r C-i") 'insert-register)
-         
+
 (define-key global-map (kbd "\C-c l") 'org-store-link)
 (define-key global-map (kbd "\C-c a") 'org-agenda)
 (define-key global-map (kbd "C-M-r") 'org-remember)
@@ -87,5 +87,3 @@
     (define-key dired-mode-map (kbd "M-{") 'previous-buffer)
     (define-key dired-mode-map (kbd "M-}") 'next-buffer)
     (define-key dired-mode-map (kbd "C-x C-q") 'wdired-change-to-wdired-mode)))
-
-
