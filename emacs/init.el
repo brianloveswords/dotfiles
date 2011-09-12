@@ -86,48 +86,45 @@
 (setq yas/root-directory "~/.emacs.d/my-snippets")
 (yas/load-directory yas/root-directory)
 
-(add-to-list 'auto-mode-alist '("\\.erb$" . nxml-mode))
-(add-to-list 'auto-mode-alist '("\\.mustache$" . nxml-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\.php$" . nxml-mode))
-(add-to-list 'auto-mode-alist '("\\.html$" . nxml-mode))
-(add-to-list 'auto-mode-alist '("\\.ejs$" . nxml-mode))
-
 (fset 'html-mode 'nxml-mode)
 (fset 'html-helper-mode 'nxml-mode)
 
-(add-to-list 'auto-mode-alist '("\\.ru$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.rjs$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.builder$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.gemspec$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
-
-(add-to-list 'auto-mode-alist '("\\.inc$" . php-mode))
-(add-to-list 'auto-mode-alist '("\\.module$" . php-mode))
-(add-to-list 'auto-mode-alist '("\\.install$" . php-mode))
-(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
-
-(add-to-list 'auto-mode-alist '("fabfile$" . python-mode))
-(add-to-list 'auto-mode-alist '("wscript$" . python-mode))
-
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.json$" . yaml-mode)) ;;weird, I know. it seems to work better
-
-(add-to-list 'auto-mode-alist '("\\.??sh$" . sh-mode))
-(add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-(add-to-list 'auto-mode-alist '("\\.m$" . objc-mode))
-(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
-(add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
-(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.djhtml$" . django-html-mode))
-
-(add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
-(add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
+(add-to-list 'auto-mode-alist '("\\.erb$"        . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache$"   . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php$"  . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.html$"       . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.ejs$"        . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.ru$"         . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rjs$"        . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.builder$"    . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.gemspec$"    . ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile"        . ruby-mode))
+(add-to-list 'auto-mode-alist '("Rakefile$"      . ruby-mode))
+(add-to-list 'auto-mode-alist '("Vagrantfile$"   . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.inc$"        . php-mode))
+(add-to-list 'auto-mode-alist '("\\.module$"     . php-mode))
+(add-to-list 'auto-mode-alist '("\\.install$"    . php-mode))
+(add-to-list 'auto-mode-alist '("\\.php$"        . php-mode))
+(add-to-list 'auto-mode-alist '("fabfile$"       . python-mode))
+(add-to-list 'auto-mode-alist '("wscript$"       . python-mode))
+(add-to-list 'auto-mode-alist '("\\.json$"       . yaml-mode)) ;;weird, I know. it seems to work better
+(add-to-list 'auto-mode-alist '("\\.yml$"        . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.js$"         . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.??sh$"       . sh-mode))
+(add-to-list 'auto-mode-alist '("\\.pp$"         . puppet-mode))
+(add-to-list 'auto-mode-alist '("\\.org$"        . org-mode))
+(add-to-list 'auto-mode-alist '("\\.plan$"       . org-mode))
+(add-to-list 'auto-mode-alist '("\\.m$"          . objc-mode))
+(add-to-list 'auto-mode-alist '("\\.scss$"       . css-mode))
+(add-to-list 'auto-mode-alist '("\\.md$"         . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml$"     . django-html-mode))
+(add-to-list 'auto-mode-alist '("\\.styl$"       . sws-mode))
+(add-to-list 'auto-mode-alist '("\\.jade$"       . jade-mode))
 
 (add-to-list 'file-coding-system-alist '("\\.txt\\'" mule-utf-8 . mule-utf-8))
 (add-to-list 'file-coding-system-alist '("\\.org\\'" mule-utf-8 . mule-utf-8))
+
+(setq initial-major-mode 'org-mode)
 
 ;; Unique buffer names
 (setq
@@ -266,6 +263,7 @@
 (defalias 'cy 'clipboard-yank)
 (defalias 'ci 'org-clock-in)
 (defalias 'co 'org-clock-out)
+(defalias 'd 'deft)
 
 ;; smart tab
 (defun smart-tab ()
