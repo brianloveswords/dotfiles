@@ -45,7 +45,8 @@ export dev=~/dev
 alias ll='ls -lah'
 alias unixtime="date +%s"
 alias cx='chmod +x'
-     
+alias .project='. ./.project'
+
 unsetopt correct \
     correct_all
 
@@ -71,6 +72,8 @@ function tgz() {
                else; tar -xzvf $1
     fi
 }
+# open docs in browser using boom.
+function docs (){ open `boom echo docs $argv[1]` }
 
 export NODE_PATH=/usr/local/lib/node
 #export WORKON_HOME=~/.python-envs
