@@ -59,7 +59,6 @@
 (require 'yasnippet)
 (require 'magit)
 (require 'uniquify)
-(require 'org-install)
 (require 'remember)
 (require 'yaml-mode)
 (require 'sass-mode)
