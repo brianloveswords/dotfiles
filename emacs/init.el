@@ -76,6 +76,7 @@
 (require 'jade-mode)
 (require 'mustache-mode)
 (require 'deft)
+(require 'coffee-mode)
 
 ;; to use curl with gist mode
 (setq gist-use-curl t)
@@ -134,6 +135,10 @@
 ;; (add-hook 'org-mode-hook 'my-org-mode-cust)
 (add-hook 'text-mode-hook 'turn-off-flyspell)
 (add-hook 'latex-mode-hook #'(lambda nil (interactive) (turn-off-flyspell)))
+(add-hook 'coffee-mode-hook
+          #'(lambda nil
+              (define-key coffee-mode-map "\C-j" 'coffee-newline-and-indent)
+              (define-key coffee-mode-map (kbd "S-<tab>") #'(lambda nil (interactive) (backward-char coffee-tab-width)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Aquamacs related customization

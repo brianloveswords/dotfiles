@@ -28,12 +28,15 @@
 (global-set-key (kbd "M-z") 'undo)
 (global-set-key (kbd "M-*") #'(lambda nil (interactive)(insert-char 9733 1))) ;; black star
 (global-set-key (kbd "M-M") 'magit-status)
+(global-set-key (kbd "M-K") 'kill-buffer)
 (global-set-key (kbd "C-S-<tab>") #'(lambda nil (interactive)(other-window -1)))
+(global-set-key (kbd "C-`") 'deft)
 (global-set-key (kbd "C-M-s") 'rgrep)
 (global-set-key (kbd "C-M-o") 'switch-to-other-buffer)
+(global-set-key (kbd "C-M-r") 'deft)
+(global-set-key (kbd "C-M-w") 'backward-kill-sexp)
 (global-set-key (kbd "C-M-=") 'enlarge-window)
 (global-set-key (kbd "C-M--") 'shrink-window)
-(global-set-key (kbd "C-M-w") 'backward-kill-sexp)
 (global-set-key (kbd "C-c i") 'org-clock-in)
 (global-set-key (kbd "C-c o") 'org-clock-out)
 (global-set-key (kbd "C-x e") 'delete-horizontal-space)
@@ -58,16 +61,9 @@
 (global-set-key (kbd "C-x C-r C-y") 'insert-register)
 (global-set-key (kbd "C-x C-r C-i") 'insert-register)
 
-(define-key global-map (kbd "\C-c l") 'org-store-link)
-(define-key global-map (kbd "\C-c a") 'org-agenda)
-(define-key global-map (kbd "C-M-r") 'org-remember)
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
 (define-key mode-specific-map [?a] 'org-agenda)
-
-;; (define-key python-mode-map (kbd "C-h") 'py-electric-backspace)
-
-;; (eval-after-load 'js2
-;;   (define-key js2-mode-map (kbd "M-j") 'js2-enter-key))
-
 
 (define-key isearch-mode-map (kbd "C-h") 'isearch-delete-char)
 (define-key isearch-mode-map (kbd "C-o")
@@ -81,6 +77,4 @@
 
 (eval-after-load 'dired
   (lambda nil
-    (define-key dired-mode-map (kbd "M-{") 'previous-buffer)
-    (define-key dired-mode-map (kbd "M-}") 'next-buffer)
     (define-key dired-mode-map (kbd "C-x C-q") 'wdired-change-to-wdired-mode)))
