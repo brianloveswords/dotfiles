@@ -40,20 +40,21 @@ export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/Cellar/python/2.
 
 # Directories
 export dev=~/dev
+export work=~/work
 
 # Aliases, aliases
 alias ll='ls -lah'
 alias unixtime="date +%s"
 alias cx='chmod +x'
 alias .project='. ./.project'
+alias whatismyip='curl automation.whatismyip.com/n09230945.asp'
 
 unsetopt correct \
     correct_all
 
 # Functions
-
 # find out ipaddress -- only works for os x
-function ipaddr(){
+function localip(){
     ifconfig en1 inet|grep inet|awk '{print $2}'
 }
 # list all open ports -- works for os x
@@ -76,5 +77,6 @@ function tgz() {
 function docs (){ open `boom echo docs $argv[1]` }
 
 export NODE_PATH=/usr/local/lib/node
-#export WORKON_HOME=~/.python-envs
-#source /usr/local/Cellar/python/2.7.1/bin/virtualenvwrapper.sh
+
+# RVM
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
