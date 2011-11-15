@@ -24,12 +24,14 @@
 
 (add-to-list 'load-path "~/.emacs.d/vendor/")
 (add-to-list 'load-path "~/.emacs.d/vendor/remember")
+(add-to-list 'load-path "~/.emacs.d/vendor/haskell-mode-2.8.0")
 (add-to-list 'load-path "~/.emacs.d/vendor/org-mode/lisp")
 (add-to-list 'load-path "~/.emacs.d/vendor/php-mode-1.5.0")
 (add-to-list 'load-path "~/.emacs.d/vendor/yaml-mode.el")
 (add-to-list 'load-path "~/.emacs.d/vendor/yasnippet-0.6.1c")
 (add-to-list 'load-path "~/.emacs.d/vendor/html5-el")
 (add-to-list 'load-path "~/.emacs.d/vendor/jade-mode")
+
 
 ;; JavaScript mode setup
 (autoload 'espresso-mode "espresso")
@@ -76,6 +78,11 @@
 (require 'mustache-mode)
 (require 'deft)
 (require 'coffee-mode)
+
+
+(load "~/.emacs.d/vendor/haskell-mode-2.8.0/haskell-site-file")
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
 ;; to use curl with gist mode
 (setq gist-use-curl t)
@@ -403,18 +410,18 @@ current line."
   (if (string-match "\.less$" (buffer-file-name))
       (async-shell-command (concat "lessc " (buffer-file-name) "> main.css") nil nil)))
 
-(when (load "flymake" t)
-  (defun flymake-pyflakes-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
-           (local-file (file-relative-name
-                        temp-file
-                        (file-name-directory buffer-file-name))))
-      (list "pychecker.sh" (list local-file))))
-  (add-to-list 'flymake-allowed-file-name-masks
-               '("\\.py\\'" flymake-pyflakes-init)))
+;; (when (load "flymake" t)
+;;   (defun flymake-pyflakes-init ()
+;;     (let* ((temp-file (flymake-init-create-temp-buffer-copy
+;;                        'flymake-create-temp-inplace))
+;;            (local-file (file-relative-name
+;;                         temp-file
+;;                         (file-name-directory buffer-file-name))))
+;;       (list "pychecker.sh" (list local-file))))
+;;   (add-to-list 'flymake-allowed-file-name-masks
+;;                '("\\.py\\'" flymake-pyflakes-init)))
 
-(add-hook 'find-file-hook 'flymake-find-file-hook)
+;; (add-hook 'find-file-hook 'flymake-find-file-hook)
 
 ;; themes!
 (load-file "~/.emacs.d/themes/color-theme-almost-monokai.el")
