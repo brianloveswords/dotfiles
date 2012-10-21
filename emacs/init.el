@@ -30,8 +30,7 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/yaml-mode.el")
 (add-to-list 'load-path "~/.emacs.d/vendor/yasnippet-0.6.1c")
 (add-to-list 'load-path "~/.emacs.d/vendor/html5-el")
-(add-to-list 'load-path "~/.emacs.d/vendor/jade-mode")
-
+(add-to-list 'load-path "/usr/local/lib/erlang/lib/tools-2.6.7/emacs")
 
 ;; JavaScript mode setup
 (autoload 'espresso-mode "espresso")
@@ -55,34 +54,25 @@
   (interactive)
   (setq indent-tabs-mode (if indent-tabs-mode nil 1)))
 
-(require 'htmlize)
-(require 're-builder+)
-(require 'php-mode)
 (require 'yasnippet)
 (require 'magit)
 (require 'uniquify)
-(require 'remember)
 (require 'yaml-mode)
-(require 'sass-mode)
-(require 'haml-mode)
 (require 'ibuffer)
 (require 'js2-highlight-vars)
-(require 'python-mode)
 (require 'gist)
-(require 'django-html-mode)
-(require 'django-mode)
-(require 'whattf-dt)
 (require 'puppet-mode)
-(require 'sws-mode)
-(require 'jade-mode)
 (require 'mustache-mode)
 (require 'deft)
+(require 'clojure-mode)
 (require 'coffee-mode)
+(require 'go-mode-load)
 
+(setq erlang-root-dir "/usr/local/lib/erlang")
+(setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
+(require 'erlang-start)
+(setq erlang-electric-commands `(erlang-electric-semicolon erlang-electric-comma))
 
-(load "~/.emacs.d/vendor/haskell-mode-2.8.0/haskell-site-file")
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
 ;; to use curl with gist mode
 (setq gist-use-curl t)
@@ -91,9 +81,6 @@
 (yas/load-directory "~/.emacs.d/vendor/yasnippet-0.6.1c/snippets")
 (setq yas/root-directory "~/.emacs.d/my-snippets")
 (yas/load-directory yas/root-directory)
-
-(fset 'html-mode 'nxml-mode)
-(fset 'html-helper-mode 'nxml-mode)
 
 (add-to-list 'auto-mode-alist '("\\.erb$"        . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.mustache$"   . nxml-mode))
@@ -123,9 +110,7 @@
 (add-to-list 'auto-mode-alist '("\\.m$"          . objc-mode))
 (add-to-list 'auto-mode-alist '("\\.scss$"       . css-mode))
 (add-to-list 'auto-mode-alist '("\\.md$"         . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.djhtml$"     . django-html-mode))
-(add-to-list 'auto-mode-alist '("\\.styl$"       . sws-mode))
-(add-to-list 'auto-mode-alist '("\\.jade$"       . jade-mode))
+(add-to-list 'auto-mode-alist '("\\.hogan.js$"   . mustache-mode))
 
 (add-to-list 'file-coding-system-alist '("\\.txt\\'" mule-utf-8 . mule-utf-8))
 (add-to-list 'file-coding-system-alist '("\\.org\\'" mule-utf-8 . mule-utf-8))
@@ -275,6 +260,9 @@
 (defalias 'ci 'org-clock-in)
 (defalias 'co 'org-clock-out)
 (defalias 'd 'deft)
+(defalias 'gl 'goto-line)
+(defalias 'js 'js2-mode)
+(defalias 'hex 'hexl-mode)
 
 (defun smart-tab ()
   "This smart tab is minibuffer compliant: it acts as usual in
@@ -328,7 +316,7 @@ current line."
 
 
 ;; text and fill mode
-(setq default-fill-column 78)
+(setq default-fill-column 72)
 
 (unless (featurep 'xemacs)
   (provide 'emacs))

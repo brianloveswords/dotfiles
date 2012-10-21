@@ -28,6 +28,7 @@
 (global-set-key (kbd "M-z") 'undo)
 (global-set-key (kbd "M-*") #'(lambda nil (interactive)(insert-char 9733 1))) ;; black star
 (global-set-key (kbd "M-M") 'magit-status)
+(global-set-key (kbd "M-B") 'ido-switch-buffer)
 (global-set-key (kbd "M-K") 'kill-buffer)
 (global-set-key (kbd "C-S-<tab>") #'(lambda nil (interactive)(other-window -1)))
 (global-set-key (kbd "C-`") 'deft)
@@ -47,7 +48,7 @@
 (global-set-key (kbd "C-x f r") 'revert-buffer)
 (global-set-key (kbd "C-x w m") 'whitespace-mode)
 (global-set-key (kbd "C-x w c") 'whitespace-cleanup)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-x C-b") 'ido-switch-buffer)
 (global-set-key (kbd "C-x C-d") 'dired)
 (global-set-key (kbd "C-x C-k") 'kill-region)
 (global-set-key (kbd "C-x C-l") 'goto-line)

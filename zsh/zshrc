@@ -18,7 +18,7 @@ export ZSH_THEME="prose"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git osx ruby)
+plugins=(git osx ruby vagrant brew lein npm)
 
 if [[ $TERM == "dumb" ]]; then	# in emacs
     PS1='%(?..[%?])%!:%~%# '
@@ -34,9 +34,25 @@ else
 fi
 
 # Customize to your needs...
-export VISUAL=aquamacs
-export EDITOR=emacs
-export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/Cellar/python/2.7.1/bin:/usr/local/var/mysql/bin/:/usr/bin:/usr/sbin:/bin:/sbin
+export VISUAL=nano
+export EDITOR=nano
+export PATH=./bin:./node_modules/.bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/python:/usr/local/Cellar/python/2.7.3/bin:/usr/local/var/mysql/bin:/usr/bin:/usr/sbin:/bin:/sbin
+
+# rubbbbbbbyyyyyyyy!
+export PREFIX=/usr/local
+# export GEM_HOME=$PREFIX/lib/ruby/gems/1.8
+# export RUBYLIB=$PREFIX/lib/ruby:$PREFIX/lib/site_ruby/1.8
+
+# noooooodddeee
+export NODE_PATH=/usr/local/lib/node
+
+# pyyyyythhhooonnn
+export WORKON_HOME=~/.virtualenvs
+source /usr/local/share/python/virtualenvwrapper.sh
+
+# Andddddddroiiiiddd
+export SDK_HOME=/usr/local/src/android-sdk-macosx
+export PATH=$SDK_HOME/platform-tools:$PATH
 
 # Directories
 export dev=~/dev
@@ -48,6 +64,11 @@ alias unixtime="date +%s"
 alias cx='chmod +x'
 alias .project='. ./.project'
 alias whatismyip='curl automation.whatismyip.com/n09230945.asp'
+alias ws='python -m SimpleHTTPServer'
+alias cljr='rlwrap clj'
+alias clj='rlwrap clj'
+alias node='rlwrap node'
+alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
 
 unsetopt correct \
     correct_all
@@ -76,7 +97,6 @@ function tgz() {
 # open docs in browser using boom.
 function docs (){ open `boom echo docs $argv[1]` }
 
-export NODE_PATH=/usr/local/lib/node
 
-# RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
