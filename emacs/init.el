@@ -30,6 +30,7 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/yaml-mode.el")
 (add-to-list 'load-path "~/.emacs.d/vendor/yasnippet-0.6.1c")
 (add-to-list 'load-path "~/.emacs.d/vendor/html5-el")
+(add-to-list 'load-path "~/.emacs.d/vendor/nyan-mode")
 (add-to-list 'load-path "/usr/local/lib/erlang/lib/tools-2.6.7/emacs")
 
 ;; JavaScript mode setup
@@ -54,6 +55,7 @@
   (interactive)
   (setq indent-tabs-mode (if indent-tabs-mode nil 1)))
 
+(require 'nyan-mode)
 (require 'yasnippet)
 (require 'magit)
 (require 'uniquify)
@@ -82,11 +84,11 @@
 (setq yas/root-directory "~/.emacs.d/my-snippets")
 (yas/load-directory yas/root-directory)
 
-(add-to-list 'auto-mode-alist '("\\.erb$"        . nxml-mode))
-(add-to-list 'auto-mode-alist '("\\.mustache$"   . nxml-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\.php$"  . nxml-mode))
-(add-to-list 'auto-mode-alist '("\\.html$"       . nxml-mode))
-(add-to-list 'auto-mode-alist '("\\.ejs$"        . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.erb$"        . html-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache$"   . html-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php$"  . html-mode))
+(add-to-list 'auto-mode-alist '("\\.html$"       . html-mode))
+(add-to-list 'auto-mode-alist '("\\.ejs$"        . html-mode))
 (add-to-list 'auto-mode-alist '("\\.ru$"         . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rjs$"        . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.builder$"    . ruby-mode))
@@ -252,7 +254,6 @@
 
 (add-hook 'js2-mode-hook 'my-js2-mode-hook)
 
-
 (defalias 'qrr 'query-replace-regexp)
 (defalias 'wm 'whitespace-mode)
 (defalias 'wc 'whitespace-cleanup)
@@ -262,7 +263,15 @@
 (defalias 'd 'deft)
 (defalias 'gl 'goto-line)
 (defalias 'js 'js2-mode)
+(defalias 'html 'html-mode)
 (defalias 'hex 'hexl-mode)
+(defalias 's 'yas/insert-snippet)
+(defalias 'go 'run-node-file)
+
+(defun run-node-file ()
+  (interactive)
+  (save-buffer)
+  (async-shell-command (concat "node " (buffer-file-name))))
 
 (defun smart-tab ()
   "This smart tab is minibuffer compliant: it acts as usual in

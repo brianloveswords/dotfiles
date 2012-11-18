@@ -21,6 +21,7 @@
 (global-set-key (kbd "C-\\") 'comment-or-uncomment-region-or-line)
 (global-set-key (kbd "C-=") 'ispell-word)
 (global-set-key (kbd "C-<tab>") 'other-window)
+(global-set-key (kbd "M-+") 'run-node-file)
 (global-set-key (kbd "M-#") 'ispell-buffer)
 (global-set-key (kbd "M-s") 'query-replace-regexp)
 (global-set-key (kbd "M-r") 'query-replace-regexp)
