@@ -29,6 +29,7 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/php-mode-1.5.0")
 (add-to-list 'load-path "~/.emacs.d/vendor/yaml-mode.el")
 (add-to-list 'load-path "~/.emacs.d/vendor/yasnippet-0.6.1c")
+(add-to-list 'load-path "~/.emacs.d/vendor/magit-1.2.0")
 (add-to-list 'load-path "~/.emacs.d/vendor/html5-el")
 (add-to-list 'load-path "~/.emacs.d/vendor/nyan-mode")
 (add-to-list 'load-path "/usr/local/lib/erlang/lib/tools-2.6.7/emacs")
@@ -69,15 +70,18 @@
 (require 'clojure-mode)
 (require 'coffee-mode)
 (require 'go-mode-load)
+(require 'column-marker)
 
-(setq erlang-root-dir "/usr/local/lib/erlang")
-(setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
-(require 'erlang-start)
-(setq erlang-electric-commands `(erlang-electric-semicolon erlang-electric-comma))
+;; (setq erlang-root-dir "/usr/local/lib/erlang")
+;; (setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
+;; (require 'erlang-start)
+;; (setq erlang-electric-commands `(erlang-electric-semicolon erlang-electric-comma))
 
 
 ;; to use curl with gist mode
 (setq gist-use-curl t)
+
+(setq whitespace-line-column 72)
 
 (yas/initialize)
 (yas/load-directory "~/.emacs.d/vendor/yasnippet-0.6.1c/snippets")

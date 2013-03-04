@@ -69,6 +69,7 @@ alias cljr='rlwrap clj'
 alias clj='rlwrap clj'
 alias node='rlwrap node'
 alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
+alias rsa-keygen="openssl genrsa 2048 > rsa-private.pem && openssl rsa -in rsa-private.pem -pubout > rsa-public.pem"
 
 unsetopt correct \
     correct_all
