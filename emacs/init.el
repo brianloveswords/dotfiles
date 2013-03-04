@@ -31,7 +31,6 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/yasnippet-0.6.1c")
 (add-to-list 'load-path "~/.emacs.d/vendor/magit-1.2.0")
 (add-to-list 'load-path "~/.emacs.d/vendor/html5-el")
-(add-to-list 'load-path "~/.emacs.d/vendor/nyan-mode")
 (add-to-list 'load-path "/usr/local/lib/erlang/lib/tools-2.6.7/emacs")
 
 ;; JavaScript mode setup
@@ -56,7 +55,6 @@
   (interactive)
   (setq indent-tabs-mode (if indent-tabs-mode nil 1)))
 
-(require 'nyan-mode)
 (require 'yasnippet)
 (require 'magit)
 (require 'uniquify)
