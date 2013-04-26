@@ -1,3 +1,4 @@
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 # -*- mode: sh; -*-
 
 # Path to your oh-my-zsh configuration.
@@ -34,8 +35,8 @@ else
 fi
 
 # Customize to your needs...
-export VISUAL=nano
-export EDITOR=nano
+export VISUAL=emacs
+export EDITOR=emacs
 export PATH=./bin:./node_modules/.bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/python:/usr/local/Cellar/python/2.7.3/bin:/usr/local/var/mysql/bin:/usr/bin:/usr/sbin:/bin:/sbin
 
 # rubbbbbbbyyyyyyyy!
@@ -70,7 +71,9 @@ alias clj='rlwrap clj'
 alias node='rlwrap node'
 alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
 alias rsa-keygen="openssl genrsa 2048 > rsa-private.pem && openssl rsa -in rsa-private.pem -pubout > rsa-public.pem"
-
+alias start-proxy="ssh -N -D 9999 bjb.io"
+alias start-tunnel="ssh -N -R 1337:localhost:22 bjb.io"
+alias logs="ssh ubuntu@ec2-54-224-0-176.compute-1.amazonaws.com"
 unsetopt correct \
     correct_all
 

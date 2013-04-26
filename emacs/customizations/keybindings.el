@@ -17,25 +17,26 @@
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "C-w") 'backward-kill-word)
-(global-set-key (kbd "C-;") 'comment-or-uncomment-region-or-line)
-(global-set-key (kbd "C-\\") 'comment-or-uncomment-region-or-line)
+(global-set-key (kbd "C-;") 'comment-or-uncomment-region)
+(global-set-key (kbd "C-\\") 'comment-or-uncomment-region)
 (global-set-key (kbd "C-=") 'ispell-word)
 (global-set-key (kbd "C-<tab>") 'other-window)
-(global-set-key (kbd "M-+") 'run-node-file)
+(global-set-key (kbd "M-0") 'delete-window)
+(global-set-key (kbd "M-1") 'delete-other-windows)
+(global-set-key (kbd "M-2") 'split-window-right)
+(global-set-key (kbd "M-3") 'split-window-right)
 (global-set-key (kbd "M-#") 'ispell-buffer)
 (global-set-key (kbd "M-s") 'query-replace-regexp)
 (global-set-key (kbd "M-r") 'query-replace-regexp)
-(global-set-key (kbd "M-o") 'occur)
-(global-set-key (kbd "M-z") 'undo)
 (global-set-key (kbd "M-*") #'(lambda nil (interactive)(insert-char 9733 1))) ;; black star
 (global-set-key (kbd "M-M") 'magit-status)
 (global-set-key (kbd "M-B") 'ido-switch-buffer)
 (global-set-key (kbd "M-K") 'kill-buffer)
 (global-set-key (kbd "C-S-<tab>") #'(lambda nil (interactive)(other-window -1)))
-(global-set-key (kbd "C-`") 'deft)
+(global-set-key (kbd "M-`") 'ibuffer)
 (global-set-key (kbd "C-M-s") 'rgrep)
 (global-set-key (kbd "C-M-o") 'switch-to-other-buffer)
-(global-set-key (kbd "C-M-r") 'deft)
+(global-set-key (kbd "C-M-r") 'recentf-open-files)
 (global-set-key (kbd "C-M-w") 'backward-kill-sexp)
 (global-set-key (kbd "C-M-=") 'enlarge-window)
 (global-set-key (kbd "C-M--") 'shrink-window)
@@ -80,3 +81,8 @@
 (eval-after-load 'dired
   (lambda nil
     (define-key dired-mode-map (kbd "C-x C-q") 'wdired-change-to-wdired-mode)))
+
+;; js2-mode specific
+(add-hook 'js2-mode-hook
+ (lambda nil
+   (local-set-key (kbd "M-+") 'run-node-file)))

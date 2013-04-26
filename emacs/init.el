@@ -1,17 +1,13 @@
-;;; This was installed by package-install.el.
-;;; This provides support for the package system and
-;;; interfacing with ELPA, the package archive.
-;;; Move this code earlier if you want to reference
-;;; packages in your .emacs.
-(when
-    (load
-     (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (package-initialize))
+;; don't show the splash screen
+(setq inhibit-splash-screen t)
+
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 ;; First thing, disable the gui elements we don't want
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-
 
 ;; Load path & customizations
 (setq dotfiles-dir (file-name-directory
@@ -24,21 +20,20 @@
 
 (add-to-list 'load-path "~/.emacs.d/vendor/")
 (add-to-list 'load-path "~/.emacs.d/vendor/remember")
+(add-to-list 'load-path "~/.emacs.d/vendor/tern/emacs")
 (add-to-list 'load-path "~/.emacs.d/vendor/haskell-mode-2.8.0")
-(add-to-list 'load-path "~/.emacs.d/vendor/org-mode/lisp")
-(add-to-list 'load-path "~/.emacs.d/vendor/php-mode-1.5.0")
+(add-to-list 'load-path "~/.emacs.d/vendor/org-8.0.1/lisp")
 (add-to-list 'load-path "~/.emacs.d/vendor/yaml-mode.el")
-(add-to-list 'load-path "~/.emacs.d/vendor/yasnippet-0.6.1c")
 (add-to-list 'load-path "~/.emacs.d/vendor/magit-1.2.0")
-(add-to-list 'load-path "~/.emacs.d/vendor/html5-el")
-(add-to-list 'load-path "/usr/local/lib/erlang/lib/tools-2.6.7/emacs")
+(add-to-list 'load-path "~/.emacs.d/vendor/yasnippet-0.6.1c")
 
 ;; JavaScript mode setup
 (autoload 'espresso-mode "espresso")
 (autoload 'js2-mode "js2-mode" nil t)
 (autoload 'python-mode "python-mode")
 (autoload 'markdown-mode "markdown-mode.el" nil t)
-
+(autoload 'tern-mode "tern.el" nil t)
+                                     
 (setq js2-use-font-lock-faces t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -55,34 +50,20 @@
   (interactive)
   (setq indent-tabs-mode (if indent-tabs-mode nil 1)))
 
-(require 'yasnippet)
 (require 'magit)
 (require 'uniquify)
 (require 'yaml-mode)
 (require 'ibuffer)
 (require 'js2-highlight-vars)
-(require 'gist)
 (require 'puppet-mode)
 (require 'mustache-mode)
-(require 'deft)
 (require 'clojure-mode)
-(require 'coffee-mode)
 (require 'go-mode-load)
 (require 'column-marker)
-
-;; (setq erlang-root-dir "/usr/local/lib/erlang")
-;; (setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
-;; (require 'erlang-start)
-;; (setq erlang-electric-commands `(erlang-electric-semicolon erlang-electric-comma))
-
-
-;; to use curl with gist mode
-(setq gist-use-curl t)
-
-(setq whitespace-line-column 72)
+(require 'recentf)
+(require 'yasnippet)
 
 (yas/initialize)
-(yas/load-directory "~/.emacs.d/vendor/yasnippet-0.6.1c/snippets")
 (setq yas/root-directory "~/.emacs.d/my-snippets")
 (yas/load-directory yas/root-directory)
 
@@ -109,8 +90,8 @@
 (add-to-list 'auto-mode-alist '("\\.js$"         . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.??sh$"       . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.pp$"         . puppet-mode))
-(add-to-list 'auto-mode-alist '("\\.org$"        . org-mode))
 (add-to-list 'auto-mode-alist '("\\.plan$"       . org-mode))
+(add-to-list 'auto-mode-alist '("\\.notes$"      . org-mode))
 (add-to-list 'auto-mode-alist '("\\.m$"          . objc-mode))
 (add-to-list 'auto-mode-alist '("\\.scss$"       . css-mode))
 (add-to-list 'auto-mode-alist '("\\.md$"         . markdown-mode))
@@ -119,21 +100,18 @@
 (add-to-list 'file-coding-system-alist '("\\.txt\\'" mule-utf-8 . mule-utf-8))
 (add-to-list 'file-coding-system-alist '("\\.org\\'" mule-utf-8 . mule-utf-8))
 
-(setq initial-major-mode 'org-mode)
+(setq visible-bell t)
 
 ;; Unique buffer names
 (setq
   uniquify-buffer-name-style 'post-forward
   uniquify-separator ":")
 
-
-;; (add-hook 'org-mode-hook 'my-org-mode-cust)
+(add-hook 'js2-mode-hook (lambda ()
+                           (tern-mode t)
+                           (subword-mode t)))
 (add-hook 'text-mode-hook 'turn-off-flyspell)
-(add-hook 'latex-mode-hook #'(lambda nil (interactive) (turn-off-flyspell)))
-(add-hook 'coffee-mode-hook
-          #'(lambda nil
-              (define-key coffee-mode-map "\C-j" 'coffee-newline-and-indent)
-              (define-key coffee-mode-map (kbd "S-<tab>") #'(lambda nil (interactive) (backward-char coffee-tab-width)))))
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Aquamacs related customization
@@ -143,13 +121,6 @@
 
 ;; open *help* in current frame.
 (setq special-display-regexps (remove "[ ]?\\*[hH]elp.*" special-display-regexps))
-
-(defvar backup-dir
-  (concat "/Users/" (user-login-name) "/.emacs.d/emacs-backups/"))
-
-(setq backup-directory-alist
-      (list
-       (cons "." backup-dir)))
 
 ;; Custom functions
 (defun jao-toggle-selective-display nil
@@ -257,6 +228,7 @@
 (add-hook 'js2-mode-hook 'my-js2-mode-hook)
 
 (defalias 'qrr 'query-replace-regexp)
+(defalias 'll 'longlines-mode)
 (defalias 'wm 'whitespace-mode)
 (defalias 'wc 'whitespace-cleanup)
 (defalias 'cy 'clipboard-yank)
@@ -311,11 +283,6 @@ current line."
 
 (add-hook 'ido-setup-hook 'my-ido-mode-cust)
 
-;; Python mode customization
-;; (add-hook 'python-mode-hook
-;;          (lambda nil
-;;            (define-key python-mode-map (kbd "C-h") 'python-backspace)))
-
 ;; Clean up of all those wacky backup files
 (setq backup-by-copying t                   ;; don't clobber symlinks
       backup-directory-alist
@@ -331,13 +298,6 @@ current line."
 
 (unless (featurep 'xemacs)
   (provide 'emacs))
-
-;; (when (and (featurep 'emacs) (load "~/nxml-mode/rng-auto.el" t))
-;;   (defalias 'html-mode 'nxml-mode)
-;;   (defalias 'xml-mode 'nxml-mode)
-;;   (defalias 'html-helper-mode 'nxml-mode))
-
-;; (setq magic-mode-alist ())
 
 ;; css-mode modifiers.
 (defun css-insert-bracket ()
@@ -367,23 +327,17 @@ current line."
 (add-hook 'php-mode-hook 'clean-php-mode)
 
 ;; Highlight todos, fixmes and bugs
-(add-hook 'c-mode-common-hook
-               (lambda ()
-                (font-lock-add-keywords nil
-                  '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t)))))
-(add-hook 'php-mode-hook
-               (lambda ()
-                (font-lock-add-keywords nil
-                  '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t)))))
+(defun my-todo-highlighter ()
+  (font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|XXX+\\|BUG\\):" 1 font-lock-warning-face prepend))))
 
-(add-hook 'js2-mode-hook
-          (lambda()
-            (font-lock-add-keywords nil
-              '(("\\<\\(FIXME\\|TODO\\|XXX+\\|BUG\\):" 1 font-lock-warning-face prepend)))))
+(add-hook 'c-mode-common-hook 'my-todo-highlighter)
+(add-hook 'php-mode-hook 'my-todo-highlighter)
+(add-hook 'js2-mode-hook 'my-todo-highlighter)
 
 (setq confirm-kill-emacs nil)
 (setq display-buffer-reuse-frames nil)
 (setq vc-delete-logbuf-window nil)
+(setq whitespace-line-column 72)
 
 (put 'narrow-to-region 'disabled nil)
 (put 'set-goal-column 'disabled nil)
@@ -402,25 +356,13 @@ current line."
 ;; default to truncate lines
 (setq truncate-lines 1)
 
-
-(defun compile-less-css ()
-  "Compile LESS to CSS"
-  (interactive)
-  (if (string-match "\.less$" (buffer-file-name))
-      (async-shell-command (concat "lessc " (buffer-file-name) "> main.css") nil nil)))
-
-;; (when (load "flymake" t)
-;;   (defun flymake-pyflakes-init ()
-;;     (let* ((temp-file (flymake-init-create-temp-buffer-copy
-;;                        'flymake-create-temp-inplace))
-;;            (local-file (file-relative-name
-;;                         temp-file
-;;                         (file-name-directory buffer-file-name))))
-;;       (list "pychecker.sh" (list local-file))))
-;;   (add-to-list 'flymake-allowed-file-name-masks
-;;                '("\\.py\\'" flymake-pyflakes-init)))
-
-;; (add-hook 'find-file-hook 'flymake-find-file-hook)
+(show-paren-mode 1)
+(global-hl-line-mode 1)
+(column-number-mode 1)
+(delete-selection-mode 1)
+(global-linum-mode 1)
+(recentf-mode 1)
+(setq show-paren-style 'expression)
 
 ;; themes!
 (load-file "~/.emacs.d/themes/color-theme-almost-monokai.el")
