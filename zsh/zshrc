@@ -37,7 +37,7 @@ fi
 # Customize to your needs...
 export VISUAL=emacs
 export EDITOR=emacs
-export PATH=./bin:./node_modules/.bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/python:/usr/local/Cellar/python/2.7.3/bin:/usr/local/var/mysql/bin:/usr/bin:/usr/sbin:/bin:/sbin
+export PATH=./bin:./node_modules/.bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/python:/usr/local/Cellar/python/2.7.3/bin:/usr/local/mysql/bin:/usr/bin:/usr/sbin:/bin:/sbin
 
 # rubbbbbbbyyyyyyyy!
 export PREFIX=/usr/local
@@ -68,7 +68,7 @@ alias whatismyip='curl automation.whatismyip.com/n09230945.asp'
 alias ws='python -m SimpleHTTPServer'
 alias cljr='rlwrap clj'
 alias clj='rlwrap clj'
-alias node='rlwrap node'
+alias node='env NODE_NO_READLINE=1 rlwrap node'
 alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
 alias rsa-keygen="openssl genrsa 2048 > rsa-private.pem && openssl rsa -in rsa-private.pem -pubout > rsa-public.pem"
 alias start-proxy="ssh -N -D 9999 bjb.io"

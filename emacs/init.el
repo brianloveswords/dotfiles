@@ -10,8 +10,8 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 ;; Load path & customizations
-(setq dotfiles-dir (file-name-directory
-                    (or (buffer-file-name) load-file-name)))
+(setq dotfiles-dir
+      (file-name-directory (or (buffer-file-name) load-file-name)))
 (setq customizations-dir (concat dotfiles-dir "customizations"))
 (add-to-list 'load-path dotfiles-dir)
 (add-to-list 'load-path customizations-dir)
@@ -33,18 +33,17 @@
 (autoload 'python-mode "python-mode")
 (autoload 'markdown-mode "markdown-mode.el" nil t)
 (autoload 'tern-mode "tern.el" nil t)
-                                     
+
 (setq js2-use-font-lock-faces t)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; INDENTATION RELATED BIDNESS ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Indentation related bidness
 (setq js2-basic-offset 2)
 (setq c-basic-offset 2)
 (setq css-indent-offset 2)
 (setq-default indent-tabs-mode nil)
 (setq indent-tabs-mode nil)
 (setq default-tab-width 2)
+
 (defun toggle-tabs nil
   "Toggle tabs v spaces"
   (interactive)
@@ -107,11 +106,17 @@
   uniquify-buffer-name-style 'post-forward
   uniquify-separator ":")
 
-(add-hook 'js2-mode-hook (lambda ()
-                           (tern-mode t)
-                           (subword-mode t)))
+(add-hook 'js2-mode-hook (lambda () (subword-mode 1)))
+(add-hook 'markdown-mode-hook
+          (lambda ()
+            (longlines-mode 1)
+            (flyspell-mode 1)))
 (add-hook 'text-mode-hook 'turn-off-flyspell)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(add-hook 'clojure-mode-hook 'paredit-mode)
+(add-hook 'scheme-mode-hook 'paredit-mode)
+(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Aquamacs related customization
@@ -227,52 +232,10 @@
 
 (add-hook 'js2-mode-hook 'my-js2-mode-hook)
 
-(defalias 'qrr 'query-replace-regexp)
-(defalias 'll 'longlines-mode)
-(defalias 'wm 'whitespace-mode)
-(defalias 'wc 'whitespace-cleanup)
-(defalias 'cy 'clipboard-yank)
-(defalias 'ci 'org-clock-in)
-(defalias 'co 'org-clock-out)
-(defalias 'd 'deft)
-(defalias 'gl 'goto-line)
-(defalias 'js 'js2-mode)
-(defalias 'html 'html-mode)
-(defalias 'hex 'hexl-mode)
-(defalias 's 'yas/insert-snippet)
-(defalias 'go 'run-node-file)
-
 (defun run-node-file ()
   (interactive)
   (save-buffer)
   (async-shell-command (concat "node " (buffer-file-name))))
-
-(defun smart-tab ()
-  "This smart tab is minibuffer compliant: it acts as usual in
-the minibuffer. Else, if mark is active, indents region. Else if
-point is at the end of a symbol, expands it. Else indents the
-current line."
-  (interactive)
-  (if (minibufferp)
-      (unless (minibuffer-complete)
-        (dabbrev-expand nil))
-    (if mark-active
-        (indent-region (region-beginning)
-                       (region-end))
-      (if (looking-at "\\_>")
-          (dabbrev-expand nil)
-        (indent-for-tab-command)))))
-
-;; Ido mode
-(defun ido-find-file-in-tag-files ()
-  (interactive)
-  (save-excursion
-    (let ((enable-recursive-minibuffers t))
-      (visit-tags-table-buffer))
-    (find-file
-     (expand-file-name
-      (ido-completing-read
-       "Project file: " (tags-table-files) nil t)))))
 
 (defun my-ido-mode-cust()
   (setq ido-enable-flex-matching t)
@@ -280,13 +243,11 @@ current line."
   (define-key ido-file-completion-map (kbd "C-h") 'ido-delete-backward-updir)
   (define-key ido-completion-map (kbd "C-w") 'backward-kill-word))
 
-
 (add-hook 'ido-setup-hook 'my-ido-mode-cust)
 
 ;; Clean up of all those wacky backup files
-(setq backup-by-copying t                   ;; don't clobber symlinks
-      backup-directory-alist
-      '(("." . "~/.emacs.d/autosaves/")) ;; don't litter
+(setq backup-by-copying t
+      backup-directory-alist '(("." . "~/.emacs.d/autosaves/"))
       delete-old-versions t
       kept-new-versions 6
       kept-old-versions 2
@@ -296,20 +257,9 @@ current line."
 ;; text and fill mode
 (setq default-fill-column 72)
 
+
 (unless (featurep 'xemacs)
   (provide 'emacs))
-
-;; css-mode modifiers.
-(defun css-insert-bracket ()
-  '((self-insert-command)
-    (indent-for-tab-command)))
-
-(setq cssm-indent-function #'cssm-c-style-indenter)
-(add-hook 'css-mode-hook
-          '(lambda ()
-             (define-key cssm-mode-map
-               (read-kbd-macro "}")
-               'css-insert-bracket)))
 
 (setq cssm-mirror-mode nil)
 
@@ -334,35 +284,30 @@ current line."
 (add-hook 'php-mode-hook 'my-todo-highlighter)
 (add-hook 'js2-mode-hook 'my-todo-highlighter)
 
-(setq confirm-kill-emacs nil)
-(setq display-buffer-reuse-frames nil)
-(setq vc-delete-logbuf-window nil)
-(setq whitespace-line-column 72)
-
 (put 'narrow-to-region 'disabled nil)
 (put 'set-goal-column 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
 
+;; this allows for cmd+arrow key to switch windows
 (windmove-default-keybindings 'meta)
 
-;; ediff custo.
-(setq ediff-split-window-function 'split-window-horizontally)
-
-;; for fuzzy matching
 (iswitchb-mode t)
 (ido-mode t)
 (icomplete-mode t)
-
-;; default to truncate lines
-(setq truncate-lines 1)
-
 (show-paren-mode 1)
 (global-hl-line-mode 1)
 (column-number-mode 1)
 (delete-selection-mode 1)
 (global-linum-mode 1)
 (recentf-mode 1)
+
+(setq confirm-kill-emacs nil)
+(setq display-buffer-reuse-frames nil)
+(setq vc-delete-logbuf-window nil)
+(setq whitespace-line-column 72)
+(setq truncate-lines 1)
 (setq show-paren-style 'expression)
+(setq ediff-split-window-function 'split-window-horizontally)
 
 ;; themes!
 (load-file "~/.emacs.d/themes/color-theme-almost-monokai.el")

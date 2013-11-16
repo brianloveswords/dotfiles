@@ -1,0 +1,82 @@
+# -*- mode: sh; -*-
+
+# Path to your oh-my-zsh configuration.
+export ZSH=$HOME/.oh-my-zsh
+
+# Set to the name theme to load.
+# Look in ~/.oh-my-zsh/themes/
+export ZSH_THEME="prose"
+
+# Set to this to use case-sensitive completion
+export CASE_SENSITIVE="true"
+
+# Comment this out to disable weekly auto-update checks
+export DISABLE_AUTO_UPDATE="true"
+
+# Uncomment following line if you want to disable colors in ls
+# export DISABLE_LS_COLORS="true"
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(git npm)
+
+if [[ $TERM == "dumb" ]]; then	# in emacs
+    PS1='%(?..[%?])%!:%~%# '
+    # for tramp to not hang, need the following. cf:
+    # http://www.emacswiki.org/emacs/TrampMode
+    unsetopt zle
+    unsetopt prompt_cr
+    unsetopt prompt_subst
+    unfunction precmd
+    unfunction preexec
+else
+    source $ZSH/oh-my-zsh.sh
+fi
+
+# Customize to your needs...
+export VISUAL=emacs
+export EDITOR=emacs
+export PATH=./bin:./node_modules/.bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/python:/usr/local/mysql/bin:/usr/bin:/usr/sbin:/bin:/sbin
+
+# rubbbbbbbyyyyyyyy!
+export PREFIX=/usr/local
+# export GEM_HOME=$PREFIX/lib/ruby/gems/1.8
+# export RUBYLIB=$PREFIX/lib/ruby:$PREFIX/lib/site_ruby/1.8
+
+# noooooodddeee
+export NODE_PATH=/usr/local/lib/node
+
+# pyyyyythhhooonnn
+
+# Aliases, aliases
+alias ll='ls -lah'
+alias unixtime="date +%s"
+alias cx='chmod +x'
+alias .project='. ./.project'
+alias ws='python -m SimpleHTTPServer'
+alias rsa-keygen="openssl genrsa 2048 > rsa-private.pem && openssl rsa -in rsa-private.pem -pubout > rsa-public.pem"
+
+unsetopt correct \
+    correct_all
+
+# Functions
+# find out ipaddress -- only works for os x
+function localip(){
+    ifconfig en1 inet|grep inet|awk '{print $2}'
+}
+# list all open ports -- works for os x
+function openports(){
+    sudo lsof -i -P | grep -i "listen"
+}
+# unpack or pack or tar.bz2 files.
+function tbz() {
+    if [ $2 ]; then; tar -cjvf $@
+               else; tar -xjvf $1
+    fi
+}
+# unpack or pack or tar.gz files.
+function tgz() {
+    if [ $2 ]; then; tar -czvf $@
+               else; tar -xzvf $1
+    fi
+}
