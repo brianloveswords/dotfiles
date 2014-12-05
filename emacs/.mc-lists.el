@@ -5,6 +5,9 @@
       '(
         c-electric-delete-forward
         dabbrev-expand
+        dired-next-line
+        end-of-buffer
+        hungry-delete-backward
         ido-switch-buffer
         isearch-backward-regexp
         org-beginning-of-line

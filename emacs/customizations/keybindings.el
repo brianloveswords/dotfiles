@@ -3,6 +3,22 @@
 (defalias 'scroll-ahead 'scroll-up)
 (defalias 'scroll-behind 'scroll-down)
 
+(defun untabify-buffer ()
+  (interactive)
+  (untabify (point-min) (point-max)))
+
+(defun indent-buffer ()
+  (interactive)
+  (indent-region (point-min) (point-max)))
+
+(defun cleanup-buffer ()
+  "Perform a bunch of operations on the whitespace content of a buffer.
+Including indent-buffer, which should not be called automatically on save."
+  (interactive)
+  (untabify-buffer)
+  (delete-trailing-whitespace)
+  (indent-buffer))
+
 (defun insert-black-star ()
   "Insert the literal ★ character into the buffer"
   (interactive)
@@ -30,6 +46,45 @@
     (occur (if isearch-regexp isearch-string
              (regexp-quote isearch-string)))))
 
+(defun my-next-error-wrapped (&optional arg reset)
+  "Jumps to previous error if at first error jump to last error instead.
+Prefix argument ARG says how many error messages to move forwards (or
+backwards, if negative). With just C-u as prefix moves to first error"
+  (interactive "P")
+  (condition-case nil
+      (call-interactively 'next-error)
+    ('user-error (next-error 1 t))))
+
+(defun my-jump-to-last-error (buffer)
+  "Jump to last error in the BUFFER, this assumes that
+the error is at last but third line"
+  (save-selected-window
+    (select-window (get-buffer-window buffer))
+    (goto-char (point-max))
+    (forward-line -3)
+    (call-interactively 'compile-goto-error)))
+
+(defun my-previous-error-wrapped (&optional arg)
+  "Jumps to previous error if at first error jump to last error instead.
+Prefix argument ARG says how many error messages to move backwards (or
+forwards, if negative)."
+  (interactive "P")
+  (condition-case nil
+      (if (compilation-buffer-p (current-buffer))
+          (compilation-previous-error 1)
+        (call-interactively 'previous-error))
+    ('user-error (progn
+                   (let ((error-buffer (next-error-find-buffer)))
+                     ;; If the buffer has an associated error buffer use it to
+                     ;; to move to last error
+                     (if (and (not (eq (current-buffer) error-buffer))
+                              (compilation-buffer-p error-buffer))
+                         (my-jump-to-last-error error-buffer)
+                       ;; Otherwise move to last point and invoke previous error
+                       (goto-char (point-max))
+                       (call-interactively 'previous-error)))))))
+
+
 ;; Key Bindings Section
 (global-unset-key (kbd "C-x m"))
 (global-unset-key (kbd "C-x f"))
@@ -51,6 +106,7 @@
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "C-w") 'backward-kill-word)
+(global-set-key (kbd "C-j") 'newline-and-indent)
 (global-set-key (kbd "C-;") 'comment-or-uncomment-region)
 (global-set-key (kbd "C-\\") 'comment-or-uncomment-region)
 (global-set-key (kbd "C--") 'er/contract-region)
@@ -60,6 +116,8 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-c C-n") 'my-next-error-wrapped)
+(global-set-key (kbd "C-c C-p") 'my-previous-error-wrapped)
 (global-set-key (kbd "C-<tab>") 'other-window)
 (global-set-key (kbd "M-0") 'delete-window)
 (global-set-key (kbd "M-1") 'delete-other-windows)
@@ -69,12 +127,12 @@
 (global-set-key (kbd "M-s") 'query-replace-regexp)
 (global-set-key (kbd "M-r") 'query-replace-regexp)
 (global-set-key (kbd "M-*") 'insert-black-star)
+(global-set-key (kbd "M-?") 'flymake-display-err-menu-for-current-line)
 (global-set-key (kbd "M-N") 'mc/mark-next-like-this)
 (global-set-key (kbd "M-P") 'mc/mark-previous-like-this)
 (global-set-key (kbd "M-M") 'magit-status)
 (global-set-key (kbd "M-B") 'ido-switch-buffer)
 (global-set-key (kbd "M-K") 'kill-buffer)
-(global-set-key (kbd "M-?") 'help-command)
 (global-set-key (kbd "C-S-<tab>") 'other-window-backward)
 (global-set-key (kbd "M--") 'er/contract-region)
 (global-set-key (kbd "M-=") 'er/expand-region)
@@ -104,10 +162,10 @@
 (global-set-key (kbd "C-x C-<tab>") 'indent-rigidly)
 (global-set-key (kbd "C-c C-c") 'execute-extended-command)
 (global-set-key (kbd "C-c C-e") 'eval-last-sexp)
-(global-set-key (kbd "C-c C-p") 'eval-print-last-sexp)
 (global-set-key (kbd "C-x C-r C-s") 'copy-to-register)
 (global-set-key (kbd "C-x C-r C-y") 'insert-register)
 (global-set-key (kbd "C-x C-r C-i") 'insert-register)
+
 
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
@@ -125,4 +183,5 @@
 ;; js2-mode specific
 (add-hook 'js2-mode-hook
  (lambda nil
-   (local-set-key (kbd "M-+") 'run-node-file)))
+   (local-set-key (kbd "M-+") 'run-node-file)
+   (local-set-key (kbd "C-j") 'newline-and-indent)))

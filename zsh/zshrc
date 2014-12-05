@@ -1,4 +1,3 @@
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 # -*- mode: sh; -*-
 
 # Path to your oh-my-zsh configuration.
@@ -12,7 +11,7 @@ export ZSH_THEME="prose"
 # export CASE_SENSITIVE="true"
 
 # Comment this out to disable weekly auto-update checks
-# export DISABLE_AUTO_UPDATE="true"
+export DISABLE_AUTO_UPDATE="true"
 
 # Uncomment following line if you want to disable colors in ls
 # export DISABLE_LS_COLORS="true"
@@ -37,7 +36,10 @@ fi
 # Customize to your needs...
 export VISUAL=emacs
 export EDITOR=emacs
-export PATH=./bin:./node_modules/.bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/python:/usr/local/Cellar/python/2.7.3/bin:/usr/local/mysql/bin:/usr/bin:/usr/sbin:/bin:/sbin
+export PATH=./bin:./node_modules/.bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/bin:/usr/sbin:/bin:/sbin
+export CDPATH=".:~:~/projects"
+
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
 # rubbbbbbbyyyyyyyy!
 export PREFIX=/usr/local
@@ -48,32 +50,20 @@ export PREFIX=/usr/local
 export NODE_PATH=/usr/local/lib/node
 
 # pyyyyythhhooonnn
-export WORKON_HOME=~/.virtualenvs
-source /usr/local/share/python/virtualenvwrapper.sh
-
-# Andddddddroiiiiddd
-export SDK_HOME=/usr/local/src/android-sdk-macosx
-export PATH=$SDK_HOME/platform-tools:$PATH
-
-# Directories
-export dev=~/dev
-export work=~/work
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+source /usr/local/bin/virtualenvwrapper.sh
 
 # Aliases, aliases
 alias ll='ls -lah'
 alias unixtime="date +%s"
 alias cx='chmod +x'
 alias .project='. ./.project'
-alias whatismyip='curl automation.whatismyip.com/n09230945.asp'
 alias ws='python -m SimpleHTTPServer'
-alias cljr='rlwrap clj'
-alias clj='rlwrap clj'
-alias node='env NODE_NO_READLINE=1 rlwrap node'
 alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
 alias rsa-keygen="openssl genrsa 2048 > rsa-private.pem && openssl rsa -in rsa-private.pem -pubout > rsa-public.pem"
 alias start-proxy="ssh -N -D 9999 bjb.io"
 alias start-tunnel="ssh -N -R 1337:localhost:22 bjb.io"
-alias logs="ssh ubuntu@ec2-54-224-0-176.compute-1.amazonaws.com"
 unsetopt correct \
     correct_all
 
@@ -104,3 +94,6 @@ function docs (){ open `boom echo docs $argv[1]` }
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# OPAM configuration
+. /Users/brian/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

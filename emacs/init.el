@@ -19,20 +19,9 @@
     (mapc #'load (directory-files customizations-dir nil ".*el$")))
 
 (add-to-list 'load-path "~/.emacs.d/vendor/")
-(add-to-list 'load-path "~/.emacs.d/vendor/remember")
-(add-to-list 'load-path "~/.emacs.d/vendor/tern/emacs")
-(add-to-list 'load-path "~/.emacs.d/vendor/haskell-mode-2.8.0")
-(add-to-list 'load-path "~/.emacs.d/vendor/org-8.0.1/lisp")
-(add-to-list 'load-path "~/.emacs.d/vendor/yaml-mode.el")
-(add-to-list 'load-path "~/.emacs.d/vendor/magit-1.2.0")
-(add-to-list 'load-path "~/.emacs.d/vendor/yasnippet-0.6.1c")
 
 ;; JavaScript mode setup
 (autoload 'espresso-mode "espresso")
-(autoload 'js2-mode "js2-mode" nil t)
-(autoload 'python-mode "python-mode")
-(autoload 'markdown-mode "markdown-mode.el" nil t)
-(autoload 'tern-mode "tern.el" nil t)
 
 (setq js2-use-font-lock-faces t)
 
@@ -49,22 +38,25 @@
   (interactive)
   (setq indent-tabs-mode (if indent-tabs-mode nil 1)))
 
-(require 'magit)
-(require 'uniquify)
-(require 'yaml-mode)
-(require 'ibuffer)
-(require 'js2-highlight-vars)
-(require 'puppet-mode)
-(require 'mustache-mode)
-(require 'clojure-mode)
-(require 'go-mode-load)
-(require 'column-marker)
-(require 'recentf)
-(require 'yasnippet)
+(require 'package)
+(package-initialize)
 
-(yas/initialize)
-(setq yas/root-directory "~/.emacs.d/my-snippets")
-(yas/load-directory yas/root-directory)
+;; OCaml shit
+(add-hook 'tuareg-mode-hook 'tuareg-imenu-set-imenu)
+(setq auto-mode-alist
+      (append '(("\\.ml[ily]?$" . tuareg-mode)
+                ("\\.topml$" . tuareg-mode))
+              auto-mode-alist))
+(autoload 'utop-setup-ocaml-buffer "utop" "Toplevel for OCaml" t)
+(add-hook 'tuareg-mode-hook 'utop-setup-ocaml-buffer)
+(add-hook 'tuareg-mode-hook 'merlin-mode)
+(setq merlin-use-auto-complete-mode t)
+(setq merlin-error-after-save nil)
+
+
+(require 'uniquify)
+(require 'ibuffer)
+(require 'recentf)
 
 (add-to-list 'auto-mode-alist '("\\.erb$"        . html-mode))
 (add-to-list 'auto-mode-alist '("\\.mustache$"   . html-mode))
@@ -84,7 +76,7 @@
 (add-to-list 'auto-mode-alist '("\\.php$"        . php-mode))
 (add-to-list 'auto-mode-alist '("fabfile$"       . python-mode))
 (add-to-list 'auto-mode-alist '("wscript$"       . python-mode))
-(add-to-list 'auto-mode-alist '("\\.json$"       . yaml-mode)) ;;weird, I know. it seems to work better
+(add-to-list 'auto-mode-alist '("\\.json$"       . json-mode))
 (add-to-list 'auto-mode-alist '("\\.yml$"        . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.js$"         . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.??sh$"       . sh-mode))
@@ -106,7 +98,17 @@
   uniquify-buffer-name-style 'post-forward
   uniquify-separator ":")
 
-(add-hook 'js2-mode-hook (lambda () (subword-mode 1)))
+(add-hook 'rust-mode-hook 'flycheck-mode)
+(add-hook 'rust-mode-hook 'hungry-delete-mode)
+(add-hook 'rust-mode-hook 'auto-complete-mode)
+
+(add-hook 'json-mode-hook 'flycheck-mode)
+
+(add-hook 'html-mode-hook 'hungry-delete-mode)
+
+(add-hook 'js2-mode-hook 'subword-mode)
+(add-hook 'js2-mode-hook 'flycheck-mode)
+
 (add-hook 'markdown-mode-hook
           (lambda ()
             (longlines-mode 1)
@@ -300,6 +302,7 @@
 (delete-selection-mode 1)
 (global-linum-mode 1)
 (recentf-mode 1)
+(yas-global-mode 1)
 
 (setq confirm-kill-emacs nil)
 (setq display-buffer-reuse-frames nil)
@@ -312,3 +315,29 @@
 ;; themes!
 (load-file "~/.emacs.d/themes/color-theme-almost-monokai.el")
 (color-theme-almost-monokai)
+
+;;; shit from .emacs
+(put 'downcase-region 'disabled nil)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("68769179097d800e415631967544f8b2001dae07972939446e21438b1010748c" "1f31a5f247d0524ef9c051d45f72bae6045b4187ed7578a7b1f8cb8758f92b60" default)))
+ '(flycheck-display-errors-delay 0.3)
+ '(flycheck-highlighting-mode (quote lines))
+ '(js2-global-externs nil)
+ '(js2-include-node-externs t)
+ '(js2-missing-semi-one-line-override nil)
+ '(js2-strict-inconsistent-return-warning nil)
+ '(js2-strict-missing-semi-warning nil)
+ '(js2-strict-trailing-comma-warning nil)
+ '(line-spacing 2)
+ '(magit-git-executable "/usr/local/bin/git")
+ '(ns-alternate-modifier (quote none)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(flycheck-error ((t (:background "#660000" :underline (:color "Red1" :style wave))))))
