@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+#contributor : b^2 <brianloveswords@gmail.com>
+# name: php
+# --
+<?php $0 ?>

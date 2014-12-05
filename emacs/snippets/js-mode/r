@@ -1,0 +1,4 @@
+# -*- mode: snippet -*-
+# name: r
+# --
+require('$0')

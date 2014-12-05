@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: mocha
+# --
+/*global describe, it*/
+const assert = require('assert');

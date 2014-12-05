@@ -1,0 +1,4 @@
+# -*- mode: snippet -*-
+# name: tap
+# --
+const test = require('tap').test;

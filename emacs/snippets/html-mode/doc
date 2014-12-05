@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: doc
+# --
+<!doctype html>
+<html lang="en-us">
+        <head>
+                <meta charset="utf8">
+                <meta name="viewport" content="width=device-width,initial-scale=1">
+                <title>$1</title>
+        </head>
+        <body>
+                $0
+        </body>
+</html>

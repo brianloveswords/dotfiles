@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: extend
+# --
+extend({
+        $0
+});

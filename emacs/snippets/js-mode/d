@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: d
+# --
+describe('$1', function () {
+  $0
+});

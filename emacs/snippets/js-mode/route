@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: route
+# --
+exports.${1:routeEndpoint} = function $1(${2:req, res, next}) {
+           $0
+};

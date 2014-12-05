@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: gulp
+# --
+gulp.task('$1', function () {
+                $0
+});

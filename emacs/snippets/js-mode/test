@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: test
+# --
+test('$1', function (t) {
+           $0
+})

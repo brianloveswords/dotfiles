@@ -1,0 +1,4 @@
+# -*- mode: snippet -*-
+# name: listen
+# --
+listen($0);

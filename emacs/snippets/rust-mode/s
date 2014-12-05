@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# --
+struct $1 {
+       $0
+}

@@ -1,0 +1,4 @@
+# -*- mode: snippet -*-
+# name: h
+# --
+<h$1>$0</h$1>
