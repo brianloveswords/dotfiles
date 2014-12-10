@@ -10,6 +10,7 @@
         hungry-delete-backward
         ido-switch-buffer
         isearch-backward-regexp
+        kill-region
         org-beginning-of-line
         org-delete-char
         org-metaleft

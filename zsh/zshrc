@@ -36,7 +36,7 @@ fi
 # Customize to your needs...
 export VISUAL=emacs
 export EDITOR=emacs
-export PATH=./bin:./node_modules/.bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/bin:/usr/sbin:/bin:/sbin
+export PATH=./bin:./node_modules/.bin:$HOME/bin:/usr/local/gocode/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/bin:/usr/sbin:/bin:/sbin
 export CDPATH=".:~:~/projects"
 
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
@@ -46,13 +46,17 @@ export PREFIX=/usr/local
 # export GEM_HOME=$PREFIX/lib/ruby/gems/1.8
 # export RUBYLIB=$PREFIX/lib/ruby:$PREFIX/lib/site_ruby/1.8
 
+# goooooooooooooooooo
+export GOROOT=/usr/local/go
+export GOPATH=/usr/local/gocode
+
 # noooooodddeee
 export NODE_PATH=/usr/local/lib/node
 
 # pyyyyythhhooonnn
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-source /usr/local/bin/virtualenvwrapper.sh
+# export WORKON_HOME=$HOME/.virtualenvs
+# export PROJECT_HOME=$HOME/Devel
+# source /usr/local/bin/virtualenvwrapper.sh
 
 # Aliases, aliases
 alias ll='ls -lah'

@@ -1,6 +1,9 @@
 ;; don't show the splash screen
 (setq inhibit-splash-screen t)
 
+;; make the command key act as meta.
+(setq mac-command-modifier 'meta)
+
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
@@ -9,20 +12,35 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
+(require 'package)
+(package-initialize)
+
+(add-to-list 'load-path "~/.emacs.d/vendor/")
+;; (add-to-list 'load-path "~/.emacs.d/vendor/async")
+;; (add-to-list 'load-path "~/.emacs.d/vendor/helm")
+
 ;; Load path & customizations
 (setq dotfiles-dir
       (file-name-directory (or (buffer-file-name) load-file-name)))
 (setq customizations-dir (concat dotfiles-dir "customizations"))
-(add-to-list 'load-path dotfiles-dir)
 (add-to-list 'load-path customizations-dir)
 (if (file-exists-p customizations-dir)
     (mapc #'load (directory-files customizations-dir nil ".*el$")))
 
-(add-to-list 'load-path "~/.emacs.d/vendor/")
+;; saveplace stuff
+(require 'saveplace)
+(setq-default save-place t)
+(setq save-place-file (expand-file-name ".places" user-emacs-directory))
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Helm config
+(require 'helm-config)
+(helm-mode 1)
+;;;;;;;;;;;;;;;;;;;;;
+
 
 ;; JavaScript mode setup
 (autoload 'espresso-mode "espresso")
-
 (setq js2-use-font-lock-faces t)
 
 ;; Indentation related bidness
@@ -38,8 +56,6 @@
   (interactive)
   (setq indent-tabs-mode (if indent-tabs-mode nil 1)))
 
-(require 'package)
-(package-initialize)
 
 ;; OCaml shit
 (add-hook 'tuareg-mode-hook 'tuareg-imenu-set-imenu)
@@ -52,7 +68,6 @@
 (add-hook 'tuareg-mode-hook 'merlin-mode)
 (setq merlin-use-auto-complete-mode t)
 (setq merlin-error-after-save nil)
-
 
 (require 'uniquify)
 (require 'ibuffer)
@@ -116,15 +131,26 @@
 (add-hook 'text-mode-hook 'turn-off-flyspell)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+(defun my-go-mode-hook ()
+  ; Call Gofmt before saving
+  (flycheck-mode 1)
+  (electric-pair-mode 1)
+  (hungry-delete-mode 1)
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  ; Customize compile command to run go build
+  (if (not (string-match "go" compile-command))
+      (set (make-local-variable 'compile-command)
+           "go build -v && go test -v && go vet"))
+
+  (local-set-key (kbd "M-RET") 'compile)
+
+  ; Godef jump key binding
+  (local-set-key (kbd "M-.") 'godef-jump))
+
+(add-hook 'go-mode-hook 'my-go-mode-hook)
 (add-hook 'clojure-mode-hook 'paredit-mode)
 (add-hook 'scheme-mode-hook 'paredit-mode)
 (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Aquamacs related customization
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; make the command key act as meta.
-(setq mac-command-modifier 'meta)
 
 ;; open *help* in current frame.
 (setq special-display-regexps (remove "[ ]?\\*[hH]elp.*" special-display-regexps))
@@ -255,10 +281,8 @@
       kept-old-versions 2
       version-control t)
 
-
 ;; text and fill mode
 (setq default-fill-column 72)
-
 
 (unless (featurep 'xemacs)
   (provide 'emacs))
@@ -278,6 +302,18 @@
 
 (add-hook 'php-mode-hook 'clean-php-mode)
 
+(defadvice show-paren-function
+      (after show-matching-paren-offscreen activate)
+      "If the matching paren is offscreen, show the matching line in the
+        echo area. Has no effect if the character before point is not of
+        the syntax class ')'."
+      (interactive)
+      (let* ((cb (char-before (point)))
+             (matching-text (and cb
+                                 (char-equal (char-syntax cb) ?\) )
+                                 (blink-matching-open))))
+        (when matching-text (message matching-text))))
+
 ;; Highlight todos, fixmes and bugs
 (defun my-todo-highlighter ()
   (font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|XXX+\\|BUG\\):" 1 font-lock-warning-face prepend))))
@@ -293,7 +329,6 @@
 ;; this allows for cmd+arrow key to switch windows
 (windmove-default-keybindings 'meta)
 
-(iswitchb-mode t)
 (ido-mode t)
 (icomplete-mode t)
 (show-paren-mode 1)
@@ -303,6 +338,7 @@
 (global-linum-mode 1)
 (recentf-mode 1)
 (yas-global-mode 1)
+(electric-pair-mode 1)
 
 (setq confirm-kill-emacs nil)
 (setq display-buffer-reuse-frames nil)
@@ -323,9 +359,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("68769179097d800e415631967544f8b2001dae07972939446e21438b1010748c" "1f31a5f247d0524ef9c051d45f72bae6045b4187ed7578a7b1f8cb8758f92b60" default)))
+ '(company-global-modes nil)
+ '(company-idle-delay 0.3)
+ '(custom-safe-themes
+   (quote
+    ("68769179097d800e415631967544f8b2001dae07972939446e21438b1010748c" "1f31a5f247d0524ef9c051d45f72bae6045b4187ed7578a7b1f8cb8758f92b60" default)))
  '(flycheck-display-errors-delay 0.3)
  '(flycheck-highlighting-mode (quote lines))
+ '(global-company-mode t)
  '(js2-global-externs nil)
  '(js2-include-node-externs t)
  '(js2-missing-semi-one-line-override nil)

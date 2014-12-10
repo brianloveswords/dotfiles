@@ -1,0 +1,81 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/Users/brian/Environment/" . "emacs/")
+ ("/Users/brian/Bocoup/" . "Bocoup.com/")
+ ("/Users/brian/Environment/emacs/" . "customizations/")
+ ("/Users/brian/Projects/learn-go/" . "tutorial/")
+ ("/Users/brian/.emacs.d/" . "customizations/")
+ ("/Users/brian/Projects/gocode/" . "tutorial/")
+ ("/Users/brian/Projects/" . "learn-go/")
+ ("/Users/brian/" . "Environment/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/Users/brian/Environment/emacs/"
+ "/Users/brian/Environment/emacs/customizations/"
+ "/Users/brian/Bocoup/Bocoup.com/"
+ "/Users/brian/.emacs.d/"
+ "/Users/brian/Projects/learn-go/tutorial/"
+ "/Users/brian/.emacs.d/customizations/"
+ "/Users/brian/"
+ "/Users/brian/Projects/gocode/tutorial/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ ".places"
+ "saveplace.el"
+ "1-aliases.el"
+ "helm.el"
+ "init.el"
+ "1-keybindings.el"
+ "helm-mode.el"
+ "config.yaml"
+ "path.el"
+ "stuff.go"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/Users/brian/Environment/emacs/" (21640 36372 0 0) "vendor/" "url/" "themes/" "swank/" "snippets/" "recentf" "places" "init.el" "ido.last" "elpa/" "customizations/" "autosaves/" "auto-save-list/" "ac-comphist.dat" "abbrev_defs" ".places" ".org-id-locations" ".mc-lists.el" "../" "./")
+
+ ("/Users/brian/Environment/emacs/customizations/" (21640 36048 0 0) "saveplace.el" "refill.el" "nxml-schemas/" "1-path.el" "1-keybindings.el" "1-aliases.el" ".#saveplace.el" "#saveplace.el#" "../" "./")
+
+ ("/Users/brian/" (21640 35012 0 0) "VirtualBox VMs/" "travisci.retry" "Public/" "provision.retry" "Projects/" "Pictures/" "Music/" "Movies/" "Library/" "Environment/" "Dropbox/" "Downloads/" "Documents/" "Desktop/" "deploy.retry" "Creative Cloud Files/" "Bocoup/" "Applications/" ".zshrc" ".zsh_history" ".zcompdump-starscream-5.0.7" ".zcompdump-Brian’s MacBook Pro-5.0.7" ".viminfo" ".vagrant.d/" ".Trash/" ".tmux.conf" ".ssh/" ".oh-my-zsh/" ".npmrc" ".npm/" ".gitconfig" ".emacs.d/" ".DS_Store" ".dropbox/" ".config/" ".CFUserTextEncoding" ".bash_history" ".ansible/" "../" "./")
+
+ ("/Users/brian/Bocoup/" (21639 44904 0 0) "Bocoup.com/" "../" "./")
+
+ ("/Users/brian/Bocoup/Bocoup.com/" (21639 12770 0 0) "Vagrantfile" "static/" "Rules" "Readme.md" "locale/" "lib/" "layouts/" "Guardfile" "Gemfile.lock" "Gemfile" "deploy/" "content/" "config.yaml" ".vagrant/" ".travis.yml" ".rsync-filter" ".rbenv-version" ".gitignore" ".git/" "../" "./")
+
+ ("/usr/local/" (21634 8491 0 0) "SUPPORTERS.md" "share/" "README.md" "opt/" "LICENSE.txt" "Library/" "lib/" "include/" "gocode/" "go/" "etc/" "CONTRIBUTING.md" "CODEOFCONDUCT.md" "Cellar/" "bin/" ".yardopts" ".gitignore" ".git/" "../" "./")
+
+ ("/usr/" (21633 65015 0 0) "X11R6/" "X11/" "standalone/" "share/" "sbin/" "local/" "libexec/" "lib/" "include/" "bin/" "../" "./")
+
+ ("/Users/" (21632 52752 0 0) "Shared/" "brian/" ".localized" "../" "./")
+
+ ("/Users/brian/.emacs.d/" (21635 27258 0 0) "vendor/" "url/" "themes/" "swank/" "snippets/" "recentf" "init.el" "ido.last" "elpa/" "customizations/" "autosaves/" "auto-save-list/" "ac-comphist.dat" "abbrev_defs" ".org-id-locations" ".mc-lists.el" "../" "./")
+
+ ("/Users/brian/Projects/learn-go/tutorial/" (21635 39541 0 0) "tutorial" "stuff.go" "main" "../" "./")
+
+ ("/Users/brian/.emacs.d/customizations/" (21634 7719 0 0) "refill.el" "path.el" "nxml-schemas/" "keybindings.el" "aliases.el" "../" "./")
+
+ ("/Users/brian/Projects/learn-go/" (21634 8600 0 0) "tutorial/" "../" "./")
+
+ ("/Users/brian/Projects/" (21634 8600 0 0) "learn-go/" "../" "./")
+
+ ("/Users/brian/Projects/tutorial/" (21634 8442 0 0) "tutorial" "main.go" "main" "../" "./")
+
+ ("/Users/brian/Environment/zsh/" (21634 8508 0 0) "zshrc.server" "zshrc" "install.sh" "../" "./")
+
+ ("/Users/brian/Projects/gocode/tutorial/" (21634 8381 0 0) "tutorial" "main.go" "main" "../" "./")
+
+ ("/Users/brian/Projects/gocode/" (21634 8198 0 0) "tutorial/" "src/" "pkg/" "bin/" "../" "./")
+
+ ("/Users/brian/Environment/" (21634 622 0 0) "zsh/" "tmux/" "README" "emacs/" ".gitignore" ".git/" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t
