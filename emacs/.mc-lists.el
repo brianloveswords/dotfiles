@@ -19,6 +19,7 @@
         scroll-n-lines-ahead
         sgml-slash
         split-line
+        yaml-electric-backspace
         ))
 
 (setq mc/cmds-to-run-once

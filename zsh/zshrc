@@ -68,6 +68,7 @@ alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
 alias rsa-keygen="openssl genrsa 2048 > rsa-private.pem && openssl rsa -in rsa-private.pem -pubout > rsa-public.pem"
 alias start-proxy="ssh -N -D 9999 bjb.io"
 alias start-tunnel="ssh -N -R 1337:localhost:22 bjb.io"
+alias vagrant-rebuild='vagrant destroy -f && vagrant up'
 unsetopt correct \
     correct_all
 

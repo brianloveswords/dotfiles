@@ -1,0 +1,1 @@
+("~/Environment/" "~/Bocoup/Bocoup.com/" "~/Projects/buffer-crc32/")

@@ -1,5 +1,40 @@
 ;;; -*- coding: utf-8 -*-
-(("/Users/brian/Environment/emacs/init.el" . 712)
- ("/Users/brian/.emacs.d/ido.last" . 4074)
- ("/Users/brian/.emacs.d/recentf" . 1754)
+(("/Users/brian/Environment/emacs/customizations/1-keybindings.el" . 3833)
+ ("/Users/brian/Environment/emacs/init.el" . 2585)
+ ("/Users/brian/Bocoup/Bocoup.com/deploy/ansible/host_vars/vagrant" . 138)
+ ("/Users/brian/Bocoup/Bocoup.com/deploy/ansible/roles/base/tasks/main.yml" . 443)
+ ("/Users/brian/Bocoup/Bocoup.com/deploy/ansible/provision.yml" . 116)
+ ("/Users/brian/Bocoup/Bocoup.com/deploy/ansible/roles/deploy/files/"
+  (dired-filename . "/Users/brian/Bocoup/Bocoup.com/deploy/ansible/roles/deploy/files/.."))
+ ("/Users/brian/Bocoup/Bocoup.com/deploy/ansible/roles/deploy/vars/" . 215)
+ ("/Users/brian/Bocoup/Bocoup.com/deploy/ansible/roles/deploy/vars/main.yml" . 127)
+ ("/Users/brian/Bocoup/Bocoup.com/deploy/ansible/roles/deploy/tasks/main.yml" . 207)
+ ("/Users/brian/Bocoup/Bocoup.com/deploy/ansible/roles/deploy/tasks/git.yml" . 1364)
+ ("/Users/brian/Bocoup/Bocoup.com/deploy/ansible/roles/deploy/tasks/rsync.yml" . 108)
+ ("/Users/brian/Bocoup/Bocoup.com/deploy/ansible/roles/deploy/tasks/"
+  (dired-filename . "/Users/brian/Bocoup/Bocoup.com/deploy/ansible/roles/deploy/tasks/.."))
+ ("/Users/brian/Bocoup/Bocoup.com/deploy/ansible/roles/deploy/"
+  (dired-filename . "/Users/brian/Bocoup/Bocoup.com/deploy/ansible/roles/deploy/.."))
+ ("/Users/brian/Bocoup/Bocoup.com/deploy/ansible/roles/"
+  (dired-filename . "/Users/brian/Bocoup/Bocoup.com/deploy/ansible/roles/.."))
+ ("/Users/brian/Bocoup/Bocoup.com/deploy/ansible/"
+  (dired-filename . "/Users/brian/Bocoup/Bocoup.com/deploy/ansible/deploy.yml"))
+ ("/Users/brian/.emacs.d/recentf" . 1749)
+ ("/Users/brian/Bocoup/Bocoup.com/Vagrantfile" . 1437)
+ ("/Users/brian/Projects/buffer-crc32/"
+  (dired-filename . "/Users/brian/Projects/buffer-crc32/index.js"))
+ ("/Users/brian/Projects/"
+  (dired-filename . "/Users/brian/Projects/base64url"))
+ ("/Users/brian/Bocoup/Bocoup.com/"
+  (dired-filename . "/Users/brian/Bocoup/Bocoup.com/Vagrantfile"))
+ ("/Users/brian/Bocoup/Bocoup.com/.vagrant/"
+  (dired-filename . "/Users/brian/Bocoup/Bocoup.com/.vagrant/.."))
+ ("/Users/brian/.emacs.d/elpa/helm-projectile-20141208.716/helm-projectile-autoloads.el" . 1510)
+ ("/Users/brian/Environment/"
+  (dired-filename . "/Users/brian/Environment/emacs"))
+ ("/Users/brian/.emacs.d/vendor/"
+  (dired-filename . "/Users/brian/.emacs.d/vendor/async"))
+ ("/Users/brian/.emacs.d/ido.last" . 4025)
+ ("/Users/brian/Environment/emacs/"
+  (dired-filename . "/Users/brian/Environment/emacs/init.el"))
  ("/Users/brian/.emacs.d/elpa/helm-20141210.919/helm-autoloads.el" . 37937))

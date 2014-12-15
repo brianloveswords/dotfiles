@@ -35,7 +35,44 @@
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Helm config
 (require 'helm-config)
+
+;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
+;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
+;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
+(global-set-key (kbd "C-c h") 'helm-command-prefix)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "C-x C-b") 'helm-mini)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "M-B") 'helm-mini)
+(global-set-key (kbd "C-c h o") 'helm-occur)
+
+(when (executable-find "curl")
+  (setq helm-google-suggest-use-curl-p t))
+
+(when (executable-find "ack")
+  (setq helm-grep-default-command "ack -Hn --no-group --no-color %e %p %f"
+        helm-grep-default-recurse-command "ack -H --no-group --no-color %e %p %f"))
+
+(setq helm-split-window-in-side-p t
+      helm-buffers-fuzzy-matching t
+      helm-move-to-line-cycle-in-source t
+      helm-ff-search-library-in-sexp t
+      helm-scroll-amount 8
+      helm-ff-file-name-history-use-recentf t)
+
 (helm-mode 1)
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
+(define-key helm-map (kbd "C-z") 'helm-select-action)
+(define-key helm-map (kbd "C-h") 'helm-ff-delete-char-backward)
+(define-key helm-find-files-map (kbd "C-h") 'helm-ff-delete-char-backward)
+
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+
+(setq projectile-switch-project-action 'helm-projectile-find-file)
 ;;;;;;;;;;;;;;;;;;;;;
 
 
@@ -329,7 +366,6 @@
 ;; this allows for cmd+arrow key to switch windows
 (windmove-default-keybindings 'meta)
 
-(ido-mode t)
 (icomplete-mode t)
 (show-paren-mode 1)
 (global-hl-line-mode 1)
@@ -339,6 +375,7 @@
 (recentf-mode 1)
 (yas-global-mode 1)
 (electric-pair-mode 1)
+(semantic-mode 1)
 
 (setq confirm-kill-emacs nil)
 (setq display-buffer-reuse-frames nil)
@@ -364,6 +401,8 @@
  '(custom-safe-themes
    (quote
     ("68769179097d800e415631967544f8b2001dae07972939446e21438b1010748c" "1f31a5f247d0524ef9c051d45f72bae6045b4187ed7578a7b1f8cb8758f92b60" default)))
+ '(dired-use-ls-dired nil)
+ '(electric-pair-delete-adjacent-pairs t)
  '(flycheck-display-errors-delay 0.3)
  '(flycheck-highlighting-mode (quote lines))
  '(global-company-mode t)

@@ -14,8 +14,8 @@
 
 ;; ----- ido-work-directory-list -----
 (
- "/Users/brian/Environment/emacs/"
  "/Users/brian/Environment/emacs/customizations/"
+ "/Users/brian/Environment/emacs/"
  "/Users/brian/Bocoup/Bocoup.com/"
  "/Users/brian/.emacs.d/"
  "/Users/brian/Projects/learn-go/tutorial/"
@@ -26,12 +26,12 @@
 
 ;; ----- ido-work-file-list -----
 (
+ "1-keybindings.el"
+ "init.el"
  ".places"
  "saveplace.el"
  "1-aliases.el"
  "helm.el"
- "init.el"
- "1-keybindings.el"
  "helm-mode.el"
  "config.yaml"
  "path.el"
@@ -40,11 +40,11 @@
 
 ;; ----- ido-dir-file-cache -----
 (
- ("/Users/brian/Environment/emacs/" (21640 36372 0 0) "vendor/" "url/" "themes/" "swank/" "snippets/" "recentf" "places" "init.el" "ido.last" "elpa/" "customizations/" "autosaves/" "auto-save-list/" "ac-comphist.dat" "abbrev_defs" ".places" ".org-id-locations" ".mc-lists.el" "../" "./")
+ ("/Users/brian/Environment/emacs/" (21640 37313 0 0) "vendor/" "url/" "themes/" "swank/" "snippets/" "recentf" "places" "init.el" "ido.last" "elpa/" "customizations/" "autosaves/" "auto-save-list/" "ac-comphist.dat" "abbrev_defs" ".places" ".org-id-locations" ".mc-lists.el" "../" "./")
 
- ("/Users/brian/Environment/emacs/customizations/" (21640 36048 0 0) "saveplace.el" "refill.el" "nxml-schemas/" "1-path.el" "1-keybindings.el" "1-aliases.el" ".#saveplace.el" "#saveplace.el#" "../" "./")
+ ("/Users/brian/Environment/emacs/customizations/" (21640 36216 0 0) "refill.el" "nxml-schemas/" "1-path.el" "1-keybindings.el" "1-aliases.el" "../" "./")
 
- ("/Users/brian/" (21640 35012 0 0) "VirtualBox VMs/" "travisci.retry" "Public/" "provision.retry" "Projects/" "Pictures/" "Music/" "Movies/" "Library/" "Environment/" "Dropbox/" "Downloads/" "Documents/" "Desktop/" "deploy.retry" "Creative Cloud Files/" "Bocoup/" "Applications/" ".zshrc" ".zsh_history" ".zcompdump-starscream-5.0.7" ".zcompdump-Brian’s MacBook Pro-5.0.7" ".viminfo" ".vagrant.d/" ".Trash/" ".tmux.conf" ".ssh/" ".oh-my-zsh/" ".npmrc" ".npm/" ".gitconfig" ".emacs.d/" ".DS_Store" ".dropbox/" ".config/" ".CFUserTextEncoding" ".bash_history" ".ansible/" "../" "./")
+ ("/Users/brian/" (21640 36806 0 0) "VirtualBox VMs/" "travisci.retry" "Public/" "provision.retry" "Projects/" "Pictures/" "Music/" "Movies/" "Library/" "Environment/" "Dropbox/" "Downloads/" "Documents/" "Desktop/" "deploy.retry" "Creative Cloud Files/" "Bocoup/" "Applications/" ".zshrc" ".zsh_history" ".zcompdump-starscream-5.0.7" ".zcompdump-Brian’s MacBook Pro-5.0.7" ".viminfo" ".vagrant.d/" ".Trash/" ".tmux.conf" ".ssh/" ".oh-my-zsh/" ".npmrc" ".npm/" ".gitconfig" ".emacs.d/" ".DS_Store" ".dropbox/" ".config/" ".CFUserTextEncoding" ".bash_history" ".ansible/" "../" "./")
 
  ("/Users/brian/Bocoup/" (21639 44904 0 0) "Bocoup.com/" "../" "./")
 
