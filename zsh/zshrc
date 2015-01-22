@@ -69,6 +69,8 @@ alias rsa-keygen="openssl genrsa 2048 > rsa-private.pem && openssl rsa -in rsa-p
 alias start-proxy="ssh -N -D 9999 bjb.io"
 alias start-tunnel="ssh -N -R 1337:localhost:22 bjb.io"
 alias vagrant-rebuild='vagrant destroy -f && vagrant up'
+alias rustup='curl -s https://static.rust-lang.org/rustup.sh | sudo sh'
+
 unsetopt correct \
     correct_all
 
@@ -102,3 +104,6 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 # OPAM configuration
 . /Users/brian/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+# Autojump config
+[[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh

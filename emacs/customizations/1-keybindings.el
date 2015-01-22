@@ -3,6 +3,29 @@
 (defalias 'scroll-ahead 'scroll-up)
 (defalias 'scroll-behind 'scroll-down)
 
+(defun smarter-move-beginning-of-line (arg)
+  "Move point back to indentation of beginning of line.
+
+Move point to the first non-whitespace character on this line.
+If point is already there, move to the beginning of the line.
+Effectively toggle between the first non-whitespace character and
+the beginning of the line.
+
+If ARG is not nil or 1, move forward ARG - 1 lines first.  If
+point reaches the beginning or end of the buffer, stop there."
+  (interactive "^p")
+  (setq arg (or arg 1))
+
+  ;; Move lines first
+  (when (/= arg 1)
+    (let ((line-move-visual nil))
+      (forward-line (1- arg))))
+
+  (let ((orig-point (point)))
+    (back-to-indentation)
+    (when (= orig-point (point))
+      (move-beginning-of-line 1))))
+
 (defun untabify-buffer ()
   (interactive)
   (untabify (point-min) (point-max)))
@@ -108,6 +131,7 @@ forwards, if negative)."
 (global-set-key (kbd "C-w") 'backward-kill-word)
 (global-set-key (kbd "C-j") 'newline-and-indent)
 (global-set-key (kbd "C-;") 'comment-or-uncomment-region)
+(global-set-key (kbd "C-$") 'ispell-word)
 (global-set-key (kbd "C-\\") 'comment-or-uncomment-region)
 (global-set-key (kbd "C--") 'er/contract-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
@@ -127,8 +151,7 @@ forwards, if negative)."
 (global-set-key (kbd "M-s") 'query-replace-regexp)
 (global-set-key (kbd "M-r") 'query-replace-regexp)
 (global-set-key (kbd "M-P") 'mc/mark-previous-like-this)
-;; (global-set-key (kbd "M-*") 'insert-black-star)
-(global-set-key (kbd "M-?") 'flymake-display-err-menu-for-current-line)
+(global-set-key (kbd "M-?") 'help-command)
 (global-set-key (kbd "M-N") 'mc/mark-next-like-this)
 (global-set-key (kbd "M-P") 'mc/mark-previous-like-this)
 (global-set-key (kbd "M-M") 'magit-status)
@@ -163,10 +186,15 @@ forwards, if negative)."
 (global-set-key (kbd "C-x C-<tab>") 'indent-rigidly)
 (global-set-key (kbd "C-c C-c") 'execute-extended-command)
 (global-set-key (kbd "C-c C-e") 'eval-last-sexp)
+(global-set-key (kbd "C-c C-<return>") 'origami-recursively-toggle-node)
+(global-set-key (kbd "C-M-<return>") 'origami-recursively-toggle-node)
+(global-set-key (kbd "M-<return>") 'origami-recursively-toggle-node)
 (global-set-key (kbd "C-x C-r C-s") 'copy-to-register)
 (global-set-key (kbd "C-x C-r C-y") 'insert-register)
 (global-set-key (kbd "C-x C-r C-i") 'insert-register)
 
+(global-set-key [remap move-beginning-of-line]
+                'smarter-move-beginning-of-line)
 
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
@@ -179,7 +207,9 @@ forwards, if negative)."
 
 (eval-after-load 'dired
   (lambda nil
-    (define-key dired-mode-map (kbd "C-x C-q") 'wdired-change-to-wdired-mode)))
+    (define-key dired-mode-map (kbd "C-x C-q") 'wdired-change-to-wdired-mode)
+    (define-key dired-mode-map (kbd "C-l") 'dired-up-directory)
+    (define-key dired-mode-map (kbd "C-j") 'dired-find-file)))
 
 ;; js2-mode specific
 (add-hook 'js2-mode-hook

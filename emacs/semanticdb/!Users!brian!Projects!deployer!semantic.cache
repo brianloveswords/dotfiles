@@ -1,0 +1,23 @@
+;; Object deployer/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "deployer/"
+  :tables
+  (list
+    (semanticdb-table "Makefile"
+      :major-mode 'makefile-bsdmake-mode
+      :tags 
+        '( ("test" function nil nil [1 91])
+            ("build-all" function (:arguments ("local-build" "linux-build")) nil [92 127])
+            ("linux-build" function nil nil [128 189])
+            ("local-build" function nil nil [190 227])
+            ("release" function (:arguments ("test" "local-build")) nil [228 307])
+            ("clean" function nil nil [308 350])
+            ("disinfect" function (:arguments ("clean")) nil [351 389]))          
+      :file "Makefile"
+      :pointmax 461
+      :fsize 460
+      :lastmodtime '(21663 11062 0 0)
+      :unmatched-syntax '((symbol 451 . 460) (symbol 443 . 450) (symbol 438 . 442) (symbol 432 . 437) (symbol 420 . 431) (symbol 408 . 419) (symbol 398 . 407) (punctuation 396 . 397) (symbol 390 . 396) (bol 390 . 390))))
+  :file "!Users!brian!Projects!deployer!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

@@ -29,6 +29,7 @@
 
 ;; saveplace stuff
 (require 'saveplace)
+;; (require 'js2-mode)
 (setq-default save-place t)
 (setq save-place-file (expand-file-name ".places" user-emacs-directory))
 
@@ -114,6 +115,7 @@
 (add-to-list 'auto-mode-alist '("\\.mustache$"   . html-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php$"  . html-mode))
 (add-to-list 'auto-mode-alist '("\\.html$"       . html-mode))
+(add-to-list 'auto-mode-alist '("\\.hbs$"        . html-mode))
 (add-to-list 'auto-mode-alist '("\\.ejs$"        . html-mode))
 (add-to-list 'auto-mode-alist '("\\.ru$"         . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rjs$"        . ruby-mode))
@@ -150,17 +152,13 @@
   uniquify-buffer-name-style 'post-forward
   uniquify-separator ":")
 
-(add-hook 'rust-mode-hook 'flycheck-mode)
-(add-hook 'rust-mode-hook 'hungry-delete-mode)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'prog-mode-hook 'flycheck-mode)
+(add-hook 'rust-mode-hook 'flycheck-rust-setup)
 (add-hook 'rust-mode-hook 'auto-complete-mode)
-
-(add-hook 'json-mode-hook 'flycheck-mode)
-
+(add-hook 'rust-mode-hook 'origami-mode)
 (add-hook 'html-mode-hook 'hungry-delete-mode)
-
 (add-hook 'js2-mode-hook 'subword-mode)
-(add-hook 'js2-mode-hook 'flycheck-mode)
-
 (add-hook 'markdown-mode-hook
           (lambda ()
             (longlines-mode 1)
@@ -358,6 +356,7 @@
 (add-hook 'c-mode-common-hook 'my-todo-highlighter)
 (add-hook 'php-mode-hook 'my-todo-highlighter)
 (add-hook 'js2-mode-hook 'my-todo-highlighter)
+(add-hook 'rust-mode-hook 'my-todo-highlighter)
 
 (put 'narrow-to-region 'disabled nil)
 (put 'set-goal-column 'disabled nil)
@@ -405,6 +404,7 @@
  '(electric-pair-delete-adjacent-pairs t)
  '(flycheck-display-errors-delay 0.3)
  '(flycheck-highlighting-mode (quote lines))
+ '(flycheck-rust-crate-type "bin")
  '(global-company-mode t)
  '(js2-global-externs nil)
  '(js2-include-node-externs t)
@@ -412,9 +412,24 @@
  '(js2-strict-inconsistent-return-warning nil)
  '(js2-strict-missing-semi-warning nil)
  '(js2-strict-trailing-comma-warning nil)
+ '(json-reformat:indent-width 2)
  '(line-spacing 2)
  '(magit-git-executable "/usr/local/bin/git")
- '(ns-alternate-modifier (quote none)))
+ '(ns-alternate-modifier (quote none))
+ '(origami-parser-alist
+   (quote
+    ((java-mode . origami-c-style-parser)
+     (c-mode . origami-c-style-parser)
+     (c++-mode . origami-c-style-parser)
+     (perl-mode . origami-c-style-parser)
+     (cperl-mode . origami-c-style-parser)
+     (js-mode . origami-c-style-parser)
+     (js2-mode . origami-c-style-parser)
+     (js3-mode . origami-c-style-parser)
+     (emacs-lisp-mode . origami-elisp-parser)
+     (lisp-interaction-mode . origami-elisp-parser)
+     (rust-mode . origami-c-style-parser)
+     (clojure-mode . origami-clj-parser)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

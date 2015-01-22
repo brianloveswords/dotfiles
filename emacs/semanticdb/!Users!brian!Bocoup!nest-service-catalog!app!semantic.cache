@@ -1,0 +1,29 @@
+;; Object app/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "app/"
+  :tables
+  (list
+    (semanticdb-table "index.html"
+      :major-mode 'html-mode
+      :tags 
+        '( ("Nest Service Catalog" section nil nil [132 595])
+            ("{{content-for 'body'}}
+    <script src=\"assets/vendor.js\">" section nil nil [595 633])
+            ("" section nil nil [633 678])
+            ("" section nil nil [678 751]))          
+      :file "index.html"
+      :pointmax 751
+      :fsize 750
+      :lastmodtime '(21675 1652 0 0)
+      :unmatched-syntax nil)
+    (semanticdb-table "app.js"
+      :major-mode 'js-mode
+      :tags nil
+      :file "app.js"
+      :pointmax 415
+      :fsize 414
+      :lastmodtime '(21675 1652 0 0)
+      :unmatched-syntax '((VARIABLE 350 . 366) (PAREN_BLOCK 366 . 392) (VARIABLE 8 . 13) (VARIABLE 14 . 18) (STRING 19 . 26) (VARIABLE 28 . 34) (VARIABLE 35 . 43) (VARIABLE 44 . 48) (STRING 49 . 65) (VARIABLE 67 . 73) (VARIABLE 74 . 90) (VARIABLE 91 . 95) (STRING 96 . 121) (VARIABLE 123 . 129) (VARIABLE 130 . 136) (VARIABLE 137 . 141) (STRING 142 . 164) (VARIABLE 167 . 172) (VAR 207 . 210) (PAREN_BLOCK 241 . 347))))
+  :file "!Users!brian!Bocoup!nest-service-catalog!app!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

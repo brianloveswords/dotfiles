@@ -1,0 +1,84 @@
+;; Object brooklynjs.github.io/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "brooklynjs.github.io/"
+  :tables
+  (list
+    (semanticdb-table "index.html"
+      :major-mode 'html-mode
+      :tags 
+        '( ("BrooklynJS | The world's most popular programming language, in New York's most popular borough" section nil nil [131 3191])
+            ("var then = new Date(2015,0,15)
+
+      var days = 'Sunday Monday Tuesday Wednesday Thursday Friday Saturday'.split(' ')
+      var months = 'January February March April May June July August September October November December'.split(' ')
+
+      function suffixed(number) {
+        if (number > 9 && number < 21)
+          return number + \"th\"
+        var lastDigit = number % 10
+        switch (lastDigit) {
+         case 1: return number + \"st\"
+         case 2: return number + \"nd\"
+         case 3: return number + \"rd\"
+        default: return number + \"th\"
+        }
+      }
+
+      function longEventDate() {
+        var weekday = days[then.getDay()]
+        var month = months[then.getMonth()]
+        var date = month + \" \" + suffixed(then.getDate())
+        document.write([weekday, date, \"at 7pm\"].join(\", \"))
+      }
+
+      function shortEventDate() {
+        document.write((then.getMonth()+1) + \"/\" + then.getDate())
+      }
+
+      function timeLeft() {
+        var now = new Date
+
+        var n = 0 | (then - now) / 86400000
+
+        document.write(
+          n >  1 ? n + \" days\" :
+          n == 1 ? \"1 day\"     :
+          n == 0 ? \"A while\"   : \"\"
+        )
+      }
+
+      function speakerTime() {
+        speakerTime.i = -~speakerTime.i
+
+        document.write(\"7:\" + speakerTime.i + \"0p\")
+      }" section nil nil [3191 4545])
+            ("Brooklyn
+      <span class=\"j\">J" section nil nil [4545 4720])
+            ("longEventDate()" section (:members 
+              ( ("Get your ticket" anchor nil nil [4947 4950])
+                ("tell your friends" anchor nil nil [5012 5015]))              ) nil [4720 5181])
+            ("timeLeft()" section nil nil [5181 5397])
+            ("shortEventDate()" section (:members 
+              ( ("61 Local" anchor nil nil [5514 5517])
+                ("Bergen St." anchor nil nil [5554 5557])
+                ("Boroughgramming" anchor nil nil [5806 5809]))              ) nil [5397 6369])
+            ("speakerTime()" section (:members 
+              ( ("Nick Hehr" anchor nil nil [6743 6746]))              ) nil [6369 6896])
+            ("speakerTime()" section (:members 
+              ( ("Nolan Lawson" anchor nil nil [7275 7278]))              ) nil [6896 7430])
+            ("speakerTime()" section (:members 
+              ( ("Andres Suarez" anchor nil nil [7802 7805]))              ) nil [7430 7953])
+            ("speakerTime()" section (:members 
+              ( ("Anne Libby" anchor nil nil [8329 8332]))              ) nil [7953 8479])
+            ("speakerTime()" section (:members 
+              ( ("BE OUR FIFTH SPEAKER" anchor nil nil [8773 8776])
+                ("craft beer" anchor nil nil [9192 9195])
+                ("JSConf code of conduct" anchor nil nil [9580 9583]))              ) nil [8479 9682]))          
+      :file "index.html"
+      :pointmax 9682
+      :fsize 9681
+      :lastmodtime '(21670 50196 0 0)
+      :unmatched-syntax nil))
+  :file "!Users!brian!BrooklynJS!brooklynjs.github.io!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

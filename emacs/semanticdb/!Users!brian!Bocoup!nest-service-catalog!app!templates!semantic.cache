@@ -1,0 +1,25 @@
+;; Object templates/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "templates/"
+  :tables
+  (list
+    (semanticdb-table "application.hbs"
+      :major-mode 'html-mode
+      :tags 
+        '( ("{{#link-to \"services\"}}Nest Service Catalog{{/link-to}}" section nil nil [113 233]))          
+      :file "application.hbs"
+      :pointmax 233
+      :fsize 232
+      :lastmodtime '(21675 1652 0 0)
+      :unmatched-syntax nil)
+    (semanticdb-table "service.hbs"
+      :major-mode 'html-mode
+      :tags nil
+      :file "service.hbs"
+      :pointmax 2546
+      :fsize 2504
+      :lastmodtime '(21680 8991 0 0)
+      :unmatched-syntax nil))
+  :file "!Users!brian!Bocoup!nest-service-catalog!app!templates!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

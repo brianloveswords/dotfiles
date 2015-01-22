@@ -1,0 +1,20 @@
+;; Object node-jwa/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "node-jwa/"
+  :tables
+  (list
+    (semanticdb-table "Makefile"
+      :major-mode 'makefile-bsdmake-mode
+      :tags 
+        '( ("verbose" function (:arguments ("test/keys")) nil [1 42])
+            ("test" function (:arguments ("test/keys")) nil [43 100])
+            ("test/keys" function nil nil [101 1283])
+            ("clean" function nil nil [1284 1322]))          
+      :file "Makefile"
+      :pointmax 1336
+      :fsize 1335
+      :lastmodtime '(21682 42143 0 0)
+      :unmatched-syntax nil))
+  :file "!Users!brian!Projects!node-jwa!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")
